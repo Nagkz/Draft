@@ -1,0 +1,1527 @@
+li{
+  list-style:none;
+}
+
+/* ラジオボタン共通 */
+.radio-button {
+  accent-color: #008803;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  padding: 5px 10px;
+}
+.radio-button input[type="radio"]:checked + label {
+  color: #fff;
+  background-color: #008803;
+}
+.radio-button input[type="radio"] + label {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/*検索*/
+.search-container {
+  margin: 0 auto; /* 左右のマージンを自動で設定して中央揃え */
+  width: 1000px;
+  justify-content: center; /* 子要素を水平方向に中央揃え */
+}
+  /*簡易検索ボックス*/
+  .search-box {
+    width: 600px;
+    justify-content: center;
+    margin: 0 auto; /*箱自体を中央揃え*/
+  }
+    /*検索ボックステキストフィールド*/
+    .search-box-text-field {
+      width: 600px;
+      height: 40px;
+      font-size: 12pt;
+      justify-content: center;
+    }
+    /*検索ボックスタグ&ボタン*/
+    .search-box-tagandbutton {
+      width: 600px;
+      display: flex; /*横並び*/
+      align-self: center;
+      margin-top: 5px;
+    }
+      /*検索ボックスタグ*/
+      .search-box-tag {
+        display: flex;
+        align-self: center;
+        align-items: center;
+        justify-content: flex-start;
+      }
+        /*検索ボックスチェックボックス*/
+        .custom-checkbox input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 16px; /* 幅 */
+          height: 16px; /* 高さ */
+          border-radius: 2px; /* 角丸 */
+          border: 2px solid #008803; /* 枠線 */
+          background-color: #fff; /* チェックボックス背景色 */
+          outline: none;
+          cursor: pointer;
+          vertical-align: middle;
+          position: relative;
+        }
+        .custom-checkbox input[type="checkbox"]:checked {
+          background-color: #008803; /* チェックされたときの背景色 */
+        }
+        .custom-checkbox input[type="checkbox"]::before {
+          content: '\2713'; /* チェックマークのUnicode（✓） */
+          font-size: 16px;
+          font-weight: bold; /* チェックマークを太くする */
+          color: #fff; /* チェックマークの色 */
+          position: absolute;
+          top: 65%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: none; /* チェックされていない状態では非表示 */
+        }
+        .custom-checkbox input[type="checkbox"]:checked::before {
+          display: block; /* チェックされた状態で表示 */
+        }
+        .custom-checkbox label {
+          vertical-align: middle;
+          margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+          font-size: 16px; /* ラベルのテキストサイズを大きくする */
+        }
+        /*全選択ボタン*/
+        #checkAllButton {
+          height: 22px; /* 高さ */
+          width: 45px; /* 幅 */
+          border-radius: 2px; /* 角丸 */
+          background-color: #686868; /* 背景色 */
+          color: #ffffff; /* 文字色 */
+          font-size: 10px; /* フォントサイズ */
+          border: none; /* ボーダーを削除 */
+          padding: 1px 5px; /* 内側の余白 */
+          cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+          transition: .3s; /* なめらか変化 */
+          border        : 2px solid #686868;    /* 枠線 */
+          margin-left: 10px;
+        }
+        #checkAllButton:hover {
+          color         : #ffffff; /* 文字色 */
+          background    : #4B4B4B; /* 背景色 */
+          border        : 2px solid #4B4B4B; /* 枠線 */
+        }
+
+    /*簡易検索実行ボタン*/
+    .search-box-button {
+      display       : inline-block;
+      border-radius : 2px; /* 角丸にする */
+      height        : 30px; /* 高さ */
+      font-size     : 10pt; /* フォントサイズ */
+      text-align    : center;
+      cursor        : pointer; /* マウスポインターを変更してボタンのクリックを示す */
+      padding       : 2px 10px; /* 内側の余白 */
+      background    : #008803; /* 背景色 */
+      color         : #ffffff; /* 文字色 */
+      line-height   : 1em;
+      transition    : .3s; /* なめらか変化 */
+      border        : 2px solid #008803; /* 枠線 */
+      margin-left: auto;
+    }
+    .search-box-button:hover {
+      color         : #ffffff; /* 文字色 */
+      background    : #006402; /* 背景色 */
+      border        : 2px solid #006402; /* 枠線 */
+    }
+
+  /*詳細検索ボックス*/
+  .search-detail {
+    width: 1000px;
+    justify-content: center;
+    margin: 0 auto; /*箱自体を中央揃え*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius : 5px; /* 角丸にする */
+    border        : 2px solid #000000; /* 枠線 */
+    padding       : 10px; /* 内側の余白 */
+  }
+    .search-detail-up {
+      display: flex;
+    }
+      .search-detail-expectation {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 10px;
+        width: 315px;
+        padding: 8px;
+        background-color: #f0f0f0;
+        border-radius : 5px; /* 角丸にする */
+      }
+      .search-detail-expectation-radio {
+        margin-left: 25px;
+      }
+
+      .search-detail-expectation input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 16px; /* 幅 */
+        height: 16px; /* 高さ */
+        border-radius: 2px; /* 角丸 */
+        border: 2px solid #008803; /* 枠線 */
+        background-color: #fff; /* チェックボックス背景色 */
+        outline: none;
+        cursor: pointer;
+        vertical-align: middle;
+        position: relative;
+      }
+      .search-detail-expectation input[type="checkbox"]:checked {
+        background-color: #008803; /* チェックされたときの背景色 */
+      }
+      .search-detail-expectation input[type="checkbox"]::before {
+        content: '\2713'; /* チェックマークのUnicode（✓） */
+        font-size: 16px;
+        font-weight: bold; /* チェックマークを太くする */
+        color: #fff; /* チェックマークの色 */
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none; /* チェックされていない状態では非表示 */
+      }
+      .search-detail-expectation input[type="checkbox"]:checked::before {
+        display: block; /* チェックされた状態で表示 */
+      }
+
+      .search-detail-expectation-label {
+        vertical-align: middle;
+        margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+        font-size: 16px; /* ラベルのテキストサイズを大きくする */
+      }
+
+      .search-detail-expectation-radio {
+
+      }
+
+      /*詳細検索基本情報*/
+      .search-detail-basic{
+        background-color: #f0f0f0;
+        justify-content: center;
+        border-radius : 5px; /* 角丸にする */
+        padding       : 10px; /* 内側の余白 */
+      }
+        /*カテゴリー*/
+        .search-detail-category {
+          display: flex;
+          align-items: center;
+        }
+        .search-detail-category-tag {
+          display: inline-block;
+        }
+        .search-detail-category-tag input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 16px; /* 幅 */
+          height: 16px; /* 高さ */
+          border-radius: 2px; /* 角丸 */
+          border: 2px solid #008803; /* 枠線 */
+          background-color: #fff; /* チェックボックス背景色 */
+          outline: none;
+          cursor: pointer;
+          vertical-align: middle;
+          position: relative;
+        }
+        .search-detail-category-tag input[type="checkbox"]:checked {
+          background-color: #008803; /* チェックされたときの背景色 */
+        }
+        .search-detail-category-tag input[type="checkbox"]::before {
+          content: '\2713'; /* チェックマークのUnicode（✓） */
+          font-size: 16px;
+          font-weight: bold; /* チェックマークを太くする */
+          color: #fff; /* チェックマークの色 */
+          position: absolute;
+          top: 65%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: none; /* チェックされていない状態では非表示 */
+        }
+        .search-detail-category-tag input[type="checkbox"]:checked::before {
+          display: block; /* チェックされた状態で表示 */
+        }
+        .search-detail-category-tag label {
+          vertical-align: middle;
+          margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+          font-size: 16px; /* ラベルのテキストサイズを大きくする */
+        }
+
+        /*基本情報2列目*/
+        .search-detail-basic-b {
+          display: flex;
+        }
+          /*投打*/
+          .search-detail-basic-throwsbats {
+
+          }
+          .search-detail-basic-throwsbats select {
+            height: 22px; /* 高さ */
+            border-radius: 2px; /* 角丸 */
+            border: 2px solid #686868; /* 枠線 */
+          }
+
+          /*出身*/
+          .search-detail-basic-prefecture {
+            margin-left: 20px;
+          }
+          .search-detail-basic-prefecture select {
+            height: 22px; /* 高さ */
+            border-radius: 2px; /* 角丸 */
+            border: 2px solid #686868; /* 枠線 */
+          }
+
+          /*誕生日*/
+          .search-detail-basic-birthday {
+            margin-left: 20px;
+            display: flex;
+          }
+          .search-detail-basic-birthday select {
+            margin-left: 5px;
+            height: 22px; /* 高さ */
+            border-radius: 2px; /* 角丸 */
+            border: 2px solid #686868; /* 枠線 */
+          }
+          .search-detail-basic-birthday-tag {
+            margin-left: 5px;
+          }
+          
+          .search-detail-basic-birthday-month {
+            margin-left: 10px;
+          }
+          .search-detail-basic-birthday-date {
+          }
+
+        
+
+    /*ポジション*/
+    .search-detail-position {
+      margin-top: 10px;
+      display: flex;
+      height: 150px;
+    }
+      .search-detail-position-tag-list {
+
+      }
+      /*ポジションタグ*/
+      .search-detail-position-tag {
+        display: flex;
+        background-color: #f0f0f0;
+        border-radius : 5px; /* 角丸にする */
+        padding       : 10px 6.8px 10px 10px; /* 内側の余白 */
+      } 
+        /*ポジションボタン*/
+        .search-detail-position-tag-button {
+          display: flex;
+          flex-direction: column;
+        }
+          /*投手全選択ボタン*/
+          #pitcher-checkAllButton {
+            height: 50px; /* 高さ */
+            width: 45px; /* 幅 */
+            border-radius: 2px; /* 角丸 */
+            background-color: #686868; /* 背景色 */
+            color: #ffffff; /* 文字色 */
+            font-size: 15px; /* フォントサイズ */
+            border: none; /* ボーダーを削除 */
+            padding: 1px 5px; /* 内側の余白 */
+            cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+            transition: .3s; /* なめらか変化 */
+            border        : 2px solid #686868;    /* 枠線 */
+            margin-bottom: 5px; /* ボタンの間に適切な間隔を設定 */
+          }
+          #pitcher-checkAllButton:hover {
+            color         : #ffffff; /* 文字色 */
+            background    : #4B4B4B; /* 背景色 */
+            border        : 2px solid #4B4B4B; /* 枠線 */
+          }
+
+          /*野手全選択ボタン*/
+          #fielder-checkAllButton {
+            height: 75px; /* 高さ */
+            width: 45px; /* 幅 */
+            border-radius: 2px; /* 角丸 */
+            background-color: #686868; /* 背景色 */
+            color: #ffffff; /* 文字色 */
+            font-size: 15px; /* フォントサイズ */
+            border: none; /* ボーダーを削除 */
+            padding: 1px 5px; /* 内側の余白 */
+            cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+            transition: .3s; /* なめらか変化 */
+            border        : 2px solid #686868;    /* 枠線 */
+          }
+          #fielder-checkAllButton:hover {
+            color         : #ffffff; /* 文字色 */
+            background    : #4B4B4B; /* 背景色 */
+            border        : 2px solid #4B4B4B; /* 枠線 */
+          }
+
+          /*ポジション指定*/
+          .search-detail-position-tag-radio {
+            position: absolute;
+            margin-left: 260px;
+          }
+          .search-detail-position-tag-radio label {
+            margin-right: 10px;
+            align-items: center;
+            font-size: 14px;
+          }
+            /*ラジオボタン*/
+            .search-detail-position-tag-radio-mainsub {
+              display: flex;
+              align-items: center;
+              margin-top: 5px;
+            }
+            .search-detail-position-tag-radio-andor {
+              display: flex;
+              align-items: center;
+            }
+
+            /*選択解除ボタン*/
+            #clearAllButton {
+              height: 22px; /* 高さ */
+              width: 60px; /* 幅 */
+              border-radius: 2px; /* 角丸 */
+              background-color: #686868; /* 背景色 */
+              color: #ffffff; /* 文字色 */
+              font-size: 10px; /* フォントサイズ */
+              border: none; /* ボーダーを削除 */
+              padding: 1px 5px; /* 内側の余白 */
+              cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+              transition: .3s; /* なめらか変化 */
+              border        : 2px solid #686868;    /* 枠線 */
+            }
+            #clearAllButton:hover {
+              color         : #ffffff; /* 文字色 */
+              background    : #4B4B4B; /* 背景色 */
+              border        : 2px solid #4B4B4B; /* 枠線 */
+            }
+        
+        /*メインポジションタグ*/
+        .mtag-list {
+          margin-left: 5px;
+        }
+        .mtag-checkbox-label {
+          margin-right: 10px;
+        }
+
+          /*メイン投手ポジションチェックボックス*/
+          .mptag-list {
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+          }
+          .mptag-list input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 16px; /* 幅 */
+            height: 16px; /* 高さ */
+            border-radius: 2px; /* 角丸 */
+            border: 2px solid #008803; /* 枠線 */
+            background-color: #fff; /* チェックボックス背景色 */
+            outline: none;
+            cursor: pointer;
+            vertical-align: middle;
+            position: relative;
+          }
+          .mptag-list input[type="checkbox"]:checked {
+            background-color: #008803; /* チェックされたときの背景色 */
+          }
+          .mptag-list input[type="checkbox"]::before {
+            content: '\2713'; /* チェックマークのUnicode（✓） */
+            font-size: 16px;
+            font-weight: bold; /* チェックマークを太くする */
+            color: #fff; /* チェックマークの色 */
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* チェックされていない状態では非表示 */
+          }
+          .mptag-list input[type="checkbox"]:checked::before {
+            display: block; /* チェックされた状態で表示 */
+          }
+          .mptag-list label {
+            vertical-align: middle;
+            margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+            font-size: 16px; /* ラベルのテキストサイズを大きくする */
+          }
+
+          /*メイン野手ポジションタグ*/
+          .mftag-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20.5px;
+          }
+            /*メイン野手捕手ポジションタグ*/
+            .mfctag-list {
+              display: flex;
+            }
+              /*メイン野手捕手ポジションタグチェックボックス*/
+              .mfctag-list input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px; /* 幅 */
+                height: 16px; /* 高さ */
+                border-radius: 2px; /* 角丸 */
+                border: 2px solid #008803; /* 枠線 */
+                background-color: #fff; /* チェックボックス背景色 */
+                outline: none;
+                cursor: pointer;
+                vertical-align: middle;
+                position: relative;
+              }
+              .mfctag-list input[type="checkbox"]:checked {
+                background-color: #008803; /* チェックされたときの背景色 */
+              }
+              .mfctag-list input[type="checkbox"]::before {
+                content: '\2713'; /* チェックマークのUnicode（✓） */
+                font-size: 16px;
+                font-weight: bold; /* チェックマークを太くする */
+                color: #fff; /* チェックマークの色 */
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none; /* チェックされていない状態では非表示 */
+              }
+              .mfctag-list input[type="checkbox"]:checked::before {
+                display: block; /* チェックされた状態で表示 */
+              }
+
+              /*メイン野手捕手ポジションタグラベル*/
+              .mfctag-list label {
+                vertical-align: middle;
+                margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+                font-size: 16px; /* ラベルのテキストサイズを大きくする */
+              }
+
+            /*メイン野手内野手ポジションタグ*/
+            .mfitag-list {
+              display: flex;
+            }
+              /*メイン野手内野手ポジションタグチェックボックス*/
+              .mfitag-list input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px; /* 幅 */
+                height: 16px; /* 高さ */
+                border-radius: 2px; /* 角丸 */
+                border: 2px solid #008803; /* 枠線 */
+                background-color: #fff; /* チェックボックス背景色 */
+                outline: none;
+                cursor: pointer;
+                vertical-align: middle;
+                position: relative;
+              }
+              .mfitag-list input[type="checkbox"]:checked {
+                background-color: #008803; /* チェックされたときの背景色 */
+              }
+              .mfitag-list input[type="checkbox"]::before {
+                content: '\2713'; /* チェックマークのUnicode（✓） */
+                font-size: 16px;
+                font-weight: bold; /* チェックマークを太くする */
+                color: #fff; /* チェックマークの色 */
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none; /* チェックされていない状態では非表示 */
+              }
+              .mfitag-list input[type="checkbox"]:checked::before {
+                display: block; /* チェックされた状態で表示 */
+              }
+
+              /*メイン野手内野手ポジションタグラベル*/
+              .mfitag-list label {
+                vertical-align: middle;
+                margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+                font-size: 16px; /* ラベルのテキストサイズを大きくする */
+              }
+
+            /*メイン野手外野手タグ*/
+            .mfotag-list {
+              display: flex;
+            }
+              /*メイン野手外野手タグチェックボックス*/
+              .mfotag-list input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px; /* 幅 */
+                height: 16px; /* 高さ */
+                border-radius: 2px; /* 角丸 */
+                border: 2px solid #008803; /* 枠線 */
+                background-color: #fff; /* チェックボックス背景色 */
+                outline: none;
+                cursor: pointer;
+                vertical-align: middle;
+                position: relative;
+              }
+              .mfotag-list input[type="checkbox"]:checked {
+                background-color: #008803; /* チェックされたときの背景色 */
+              }
+              .mfotag-list input[type="checkbox"]::before {
+                content: '\2713'; /* チェックマークのUnicode（✓） */
+                font-size: 16px;
+                font-weight: bold; /* チェックマークを太くする */
+                color: #fff; /* チェックマークの色 */
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none; /* チェックされていない状態では非表示 */
+              }
+              .mfotag-list input[type="checkbox"]:checked::before {
+                display: block; /* チェックされた状態で表示 */
+              }
+
+              /*メイン野手外野手タグラベル*/
+              .mfotag-list label {
+                vertical-align: middle;
+                margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+                font-size: 16px; /* ラベルのテキストサイズを大きくする */
+              }
+
+        /*オールポジションタグ*/
+        .wtag-list {
+          margin-left: 5px;
+        }
+        .wtag-checkbox-label {
+          margin-right: 10px;
+        }
+
+          /*オール投手ポジションチェックボックス*/
+          .wptag-list {
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+          }
+          .wptag-list input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 16px; /* 幅 */
+            height: 16px; /* 高さ */
+            border-radius: 2px; /* 角丸 */
+            border: 2px solid #008803; /* 枠線 */
+            background-color: #fff; /* チェックボックス背景色 */
+            outline: none;
+            cursor: pointer;
+            vertical-align: middle;
+            position: relative;
+          }
+          .wptag-list input[type="checkbox"]:checked {
+            background-color: #008803; /* チェックされたときの背景色 */
+          }
+          .wptag-list input[type="checkbox"]::before {
+            content: '\2713'; /* チェックマークのUnicode（✓） */
+            font-size: 16px;
+            font-weight: bold; /* チェックマークを太くする */
+            color: #fff; /* チェックマークの色 */
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* チェックされていない状態では非表示 */
+          }
+          .wptag-list input[type="checkbox"]:checked::before {
+            display: block; /* チェックされた状態で表示 */
+          }
+          .wptag-list label {
+            vertical-align: middle;
+            margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+            font-size: 16px; /* ラベルのテキストサイズを大きくする */
+          }
+
+          /*オール野手ポジションタグ*/
+          .wftag-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20.5px;
+          }
+            /*オール野手捕手ポジションタグ*/
+            .wfctag-list {
+              display: flex;
+            }
+              /*オール野手捕手ポジションタグチェックボックス*/
+              .wfctag-list input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px; /* 幅 */
+                height: 16px; /* 高さ */
+                border-radius: 2px; /* 角丸 */
+                border: 2px solid #008803; /* 枠線 */
+                background-color: #fff; /* チェックボックス背景色 */
+                outline: none;
+                cursor: pointer;
+                vertical-align: middle;
+                position: relative;
+              }
+              .wfctag-list input[type="checkbox"]:checked {
+                background-color: #008803; /* チェックされたときの背景色 */
+              }
+              .wfctag-list input[type="checkbox"]::before {
+                content: '\2713'; /* チェックマークのUnicode（✓） */
+                font-size: 16px;
+                font-weight: bold; /* チェックマークを太くする */
+                color: #fff; /* チェックマークの色 */
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none; /* チェックされていない状態では非表示 */
+              }
+              .wfctag-list input[type="checkbox"]:checked::before {
+                display: block; /* チェックされた状態で表示 */
+              }
+
+              /*オール野手捕手ポジションタグラベル*/
+              .wfctag-list label {
+                vertical-align: middle;
+                margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+                font-size: 16px; /* ラベルのテキストサイズを大きくする */
+              }
+
+            /*オール野手内野手ポジションタグ*/
+            .wfitag-list {
+              display: flex;
+            }
+              /*オール野手内野手ポジションタグチェックボックス*/
+              .wfitag-list input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px; /* 幅 */
+                height: 16px; /* 高さ */
+                border-radius: 2px; /* 角丸 */
+                border: 2px solid #008803; /* 枠線 */
+                background-color: #fff; /* チェックボックス背景色 */
+                outline: none;
+                cursor: pointer;
+                vertical-align: middle;
+                position: relative;
+              }
+              .wfitag-list input[type="checkbox"]:checked {
+                background-color: #008803; /* チェックされたときの背景色 */
+              }
+              .wfitag-list input[type="checkbox"]::before {
+                content: '\2713'; /* チェックマークのUnicode（✓） */
+                font-size: 16px;
+                font-weight: bold; /* チェックマークを太くする */
+                color: #fff; /* チェックマークの色 */
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none; /* チェックされていない状態では非表示 */
+              }
+              .wfitag-list input[type="checkbox"]:checked::before {
+                display: block; /* チェックされた状態で表示 */
+              }
+
+              /*オール野手内野手ポジションタグラベル*/
+              .wfitag-list label {
+                vertical-align: middle;
+                margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+                font-size: 16px; /* ラベルのテキストサイズを大きくする */
+              }
+
+            /*オール野手外野手タグ*/
+            .wfotag-list {
+              display: flex;
+            }
+              /*オール野手外野手タグチェックボックス*/
+              .wfotag-list input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px; /* 幅 */
+                height: 16px; /* 高さ */
+                border-radius: 2px; /* 角丸 */
+                border: 2px solid #008803; /* 枠線 */
+                background-color: #fff; /* チェックボックス背景色 */
+                outline: none;
+                cursor: pointer;
+                vertical-align: middle;
+                position: relative;
+              }
+              .wfotag-list input[type="checkbox"]:checked {
+                background-color: #008803; /* チェックされたときの背景色 */
+              }
+              .wfotag-list input[type="checkbox"]::before {
+                content: '\2713'; /* チェックマークのUnicode（✓） */
+                font-size: 16px;
+                font-weight: bold; /* チェックマークを太くする */
+                color: #fff; /* チェックマークの色 */
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none; /* チェックされていない状態では非表示 */
+              }
+              .wfotag-list input[type="checkbox"]:checked::before {
+                display: block; /* チェックされた状態で表示 */
+              }
+
+              /*オール野手外野手タグラベル*/
+              .wfotag-list label {
+                vertical-align: middle;
+                margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+                font-size: 16px; /* ラベルのテキストサイズを大きくする */
+              }
+              
+    /*パラメータ*/
+    .search-detail-parameter {
+      margin-left: 10px;
+      background-color: #f0f0f0;
+      border-radius : 5px; /* 角丸にする */
+      padding       : 10px; /* 内側の余白 */
+    }
+      /*パラメータ 投手*/
+      .search-detail-parameter-pitcher {
+        margin-top: 4px;
+      }
+      .search-detail-parameter-pitcher select {
+        height: 22px; /* 高さ */
+        border-radius: 2px; /* 角丸 */
+        border: 2px solid #686868; /* 枠線 */
+      }
+        .search-detail-parameter-pitcher-a {
+          display: flex;
+        }
+          .search-detail-parameter-pitcher-control {
+            margin-left: 52px;
+          }
+
+        .search-detail-parameter-pitcher-b {
+          display: flex;
+        }
+          .search-detail-parameter-pitcher-stamina {
+
+          }
+          .search-detail-parameter-pitcher-breaking {
+            margin-left: 20px;
+          }
+
+      /*パラメータ 野手*/
+      .search-detail-parameter-fielder {
+        margin-top: 10px;
+      }
+      .search-detail-parameter-fielder select {
+        height: 22px; /* 高さ */
+        border-radius: 2px; /* 角丸 */
+        border: 2px solid #686868; /* 枠線 */
+      }
+        .search-detail-parameter-fielder-a {
+          display: flex;
+        }
+          .search-detail-parameter-fielder-power {
+            margin-left: 20px;
+          }
+        .search-detail-parameter-fielder-b {
+          display: flex;
+        }
+          .search-detail-parameter-fielder-running {
+          
+          }
+          .search-detail-parameter-fielder-defence {
+            margin-left: 36px;
+          }
+
+      /*パラメータラジオボタン*/
+      .search-detail-parameter-radio {
+        margin-top: 0px;
+        margin-left: 119px;
+      }
+
+    /*球種*/
+    .search-detail-position-variety {
+      position: relative;
+      margin-left: 10px;
+      background-color: #f0f0f0;
+      border-radius : 5px; /* 角丸にする */
+      padding       : 10px; /* 内側の余白 */
+      width: 310px;
+    }
+      .vtag-checkbox-label {
+
+      }
+      .vtag-list {
+        position: relative
+      }
+      /*球種チェックボックス*/
+      .vtag-list input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 16px; /* 幅 */
+        height: 16px; /* 高さ */
+        border-radius: 2px; /* 角丸 */
+        border: 2px solid #008803; /* 枠線 */
+        background-color: #fff; /* チェックボックス背景色 */
+        outline: none;
+        cursor: pointer;
+        vertical-align: middle;
+        position: relative;
+      }
+      .vtag-list input[type="checkbox"]:checked {
+        background-color: #008803; /* チェックされたときの背景色 */
+      }
+      .vtag-list input[type="checkbox"]::before {
+        content: '\2713'; /* チェックマークのUnicode（✓） */
+        font-size: 16px;
+        font-weight: bold; /* チェックマークを太くする */
+        color: #fff; /* チェックマークの色 */
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none; /* チェックされていない状態では非表示 */
+      }
+      .vtag-list input[type="checkbox"]:checked::before {
+        display: block; /* チェックされた状態で表示 */
+      }
+
+      /*球種タグラベル*/
+      .vtag-list label {
+        vertical-align: middle;
+        margin-right: 5px; /* チェックボックスとラベルの間隔を調整 */
+        font-size: 16px; /* ラベルのテキストサイズを大きくする */
+      }
+        /*球種左方向タグ*/
+        .vltag-list{
+          position: absolute;
+        }
+        /*球種左下方向タグ*/
+        .vlltag-list{
+          position: absolute;
+          top: 48px;
+          left: 30px;
+        }
+        /*球種下方向タグ*/
+        .vutag-list{
+          position: absolute;
+          top: 100px;
+          left: 55%;
+          transform: translate(-50%, -50%);
+        }
+        /*球種右下方向タグ*/
+        .vlrtag-list{
+          position: absolute;
+          top: 48px;
+          right: 30px;
+        }
+        /*球種右方向タグ*/
+        .vrtag-list{
+          position: absolute;
+          right: 0px;
+        }
+
+      /*球種タグ図形*/
+      .vtag-list-figure {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto;
+      }
+        /*球種タグ図形ボール*/
+        .vtag-list-ball {
+          position: absolute;
+          top: 25px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 310px;
+          width: 20px;/*幅*/
+          height: 20px;/*高さ*/
+          border-radius: 50%;/*角丸*/
+          border: 2px solid #686868;
+          background-color: #FFFFFF;
+        }
+        /*球種タグ図形左矢印*/
+        .vtag-list-left {
+          position: absolute;
+          top: 18px;
+          display: inline-block;
+          vertical-align: middle;
+          color: #686868;
+          line-height: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: transparent;
+          border-width: 0.375em 0.64952em;
+          border-right-color: currentColor;
+          border-left: 0;
+        }
+        /*球種タグ図形左下矢印*/
+        .vtag-list-lowerleft {
+          position: absolute;
+          top: 36px;
+          left: 7px;
+          display: inline-block;
+          vertical-align: middle;
+          color: #686868;
+          line-height: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: transparent;
+          border-width: 0.375em 0.64952em;
+          border-right-color: currentColor;
+          border-left: 0;
+          transform: rotate( -45deg );
+        }
+        /*球種タグ図形下矢印*/
+        .vtag-list-under {
+          position: absolute;
+          margin: 0 auto;
+          top: 44px;
+          left: 24px;
+          display: inline-block;
+          vertical-align: middle;
+          color: #686868;
+          line-height: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: transparent;
+          border-width: 0.64952em 0.375em;
+          border-top-color: currentColor;
+          border-bottom: 0;
+        }
+        /*球種タグ図形右下矢印*/
+        .vtag-list-lowerright {
+          position: absolute;
+          top: 36px;
+          right: 7px;
+          display: inline-block;
+          vertical-align: middle;
+          color: #686868;
+          line-height: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: transparent;
+          border-width: 0.64952em 0.375em;
+          border-top-color: currentColor;
+          border-bottom: 0;
+          transform: rotate( -45deg );
+        }
+        /*球種タグ図形右矢印*/
+        .vtag-list-right {
+          position: absolute;
+          top: 18px;
+          right: 0px;
+          display: inline-block;
+          vertical-align: middle;
+          color: #686868;
+          line-height: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: transparent;
+          border-width: 0.375em 0.64952em;
+          border-left-color: currentColor;
+          border-right: 0;
+        }
+
+      /*球種タグラジオボタン*/
+      .vtag-list-radio-button {
+        position: absolute;
+        top: 100px;
+        right: 15px;
+      }
+      .vtag-list-radio-button label {
+        display: block; /* ラベルをブロック要素にすることで縦に配置する */
+      }
+      .vtag-list-radio-button label::before {
+        content: none;
+      }
+      /*球種タグ全選択ボタン*/
+      #selectAllButton {
+        position: absolute;
+        height: 22px; /* 高さ */
+        width: 45px; /* 幅 */
+        border-radius: 2px; /* 角丸 */
+        background-color: #686868; /* 背景色 */
+        color: #ffffff; /* 文字色 */
+        font-size: 10px; /* フォントサイズ */
+        border: none; /* ボーダーを削除 */
+        padding: 1px 5px; /* 内側の余白 */
+        cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+        transition: .3s; /* なめらか変化 */
+        border : 2px solid #686868;    /* 枠線 */
+        bottom: 10px;
+      }
+      #selectAllButton:hover {
+        color         : #ffffff; /* 文字色 */
+        background    : #4B4B4B; /* 背景色 */
+        border        : 2px solid #4B4B4B; /* 枠線 */
+      }
+    
+    /*タグ*/
+    .search-detail-tag {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+      /*タグチェックボックス*/
+      .search-detail-tag input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 14px; /* 幅 */
+        height: 14px; /* 高さ */
+        border-radius: 2px; /* 角丸 */
+        border: 2px solid #008803; /* 枠線 */
+        background-color: #fff; /* チェックボックス背景色 */
+        outline: none;
+        cursor: pointer;
+        vertical-align: middle;
+        position: relative;
+      }
+      .search-detail-tag input[type="checkbox"]:checked {
+        background-color: #008803; /* チェックされたときの背景色 */
+      }
+      .search-detail-tag input[type="checkbox"]::before {
+        content: '\2713'; /* チェックマークのUnicode（✓） */
+        font-size: 14px;
+        font-weight: bold; /* チェックマークを太くする */
+        color: #fff; /* チェックマークの色 */
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none; /* チェックされていない状態では非表示 */
+      }
+      .search-detail-tag input[type="checkbox"]:checked::before {
+        display: block; /* チェックされた状態で表示 */
+      }
+
+      /*タグ*/
+      .search-detail-tag-label {
+        vertical-align: middle;
+        margin-right: 15px; /* チェックボックスとラベルの間隔を調整 */
+        font-size: 14px; /* ラベルのテキストサイズを大きくする */
+      }
+      .search-detail-tag-radio{
+        margin-left: 290px;
+      }
+      .search-detail-tag-radio label{
+        margin-left: 10px;
+      }
+
+    /*詳細検索実行ボタン*/
+    .search-detail-button-block {
+      margin: 0 auto; /* 左右のマージンを自動で設定して中央揃え */
+      width: 1000px;
+      display: flex; /* フレックスコンテナにする */
+      justify-content: center; /* 子要素を水平方向に中央揃え */
+    }
+    .search-detail-button {
+      display       : inline-block;
+      border-radius : 2px; /* 角丸にする */
+      height        : 40px; /* 高さ */
+      width         : 120px; /* 幅 */
+      font-size     : 14pt; /* フォントサイズ */
+      text-align    : center;
+      cursor        : pointer; /* マウスポインターを変更してボタンのクリックを示す */
+      padding       : 2px 10px; /* 内側の余白 */
+      background    : #008803; /* 背景色 */
+      color         : #ffffff; /* 文字色 */
+      line-height   : 1em;
+      transition    : .3s; /* なめらか変化 */
+      border        : 2px solid #008803; /* 枠線 */
+    }
+    .search-detail-button:hover {
+      color         : #ffffff; /* 文字色 */
+      background    : #006402; /* 背景色 */
+      border        : 2px solid #006402; /* 枠線 */
+    } 
+
+
+
+/*選手*/
+.players-container {
+  width: 1000px;
+  margin: 25px auto;
+}
+h3 {
+  width: 100px;
+  margin: 30px auto;
+  text-align: center;
+}
+  /*検索解除*/
+  .search-cancel {
+    text-decoration: none; /* リンクの下線をなくす */
+    background-color: #686868;
+  }
+  .search-cancel {
+    display: inline-block;
+    text-align: center;
+    height: 20px;
+    width: 70px;
+    padding: 5px;
+    background-color: #686868; /* ボタンの背景色 */
+    color: #fff; /* ボタンのテキストカラー */
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .search-cancel:hover {
+    background-color: #4B4B4B; /* ホバー時のボタンの背景色 */
+  }
+
+  /*選手ボックス*/
+  .player-box {
+    border: 2px solid #686868;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+  }
+    .player-main-box {
+      display: flex;
+    }
+      .players-basic {
+        display: flex;
+        width: 980px;
+        height:116px;
+      }
+        /*左側*/
+        .players-basic-left {
+          width: 250px;
+        }
+          /*左側上部*/
+          .players-basic-left-a {
+            display: flex;
+            background-color: #f0f0f0;
+            border-radius: 2px;
+          }
+            /*カテゴリー*/
+            .players-basic-category {
+              padding: 5px;
+              border-radius: 2px;
+              background-color: #008803;
+              color: #ffffff;
+            }
+            /*メインポジション*/
+            .players-basic-mtag {
+              font-size: 16px;
+              margin: 5px;
+            }
+            /*サブポジション*/
+            .players-basic-stag {
+              font-size: 12px;
+              margin: 4px 1px 4px 0px;
+              padding: 4px;
+              border-left: #686868 2px solid;
+            }
+            
+          .players-basic-left-b {
+            
+          }
+            /*氏名*/
+            .players-basic-name {
+              margin-top: 5px;
+              margin-bottom: 5px;
+              font-size: 25px;
+              height: 38px;
+              font-weight: bold;
+            }
+            /*所属と予想順位*/
+            .players-basic-belongandexpectation {
+              display: flex;
+              justify-content: space-between; /* 要素間のスペースを均等に配置 */
+              align-items: center;
+              width: 250px;
+            }
+              /*所属*/
+              .players-basic-belong {
+                padding: 5px 8px;
+                background-color: #000000;
+                border-radius: 2px;
+                color: #ffffff;
+              }
+              /*予想順位*/
+              .players-basic-expectation {
+                margin-left: auto; /* 右端に揃える */
+                font-size: 14px;
+                display       : inline-block;
+                border-radius : 2px; /* 角丸にする */
+                text-align    : center;
+                height: 30px;
+                line-height: 30px;
+                width: 30px;
+                padding       : 2px 5px; /* 内側の余白 */
+                background    : #000000; /* 背景色 */
+                color         : #ffffff; /* 文字色 */
+              }
+
+        .players-basic-right {
+          width: 717px;
+          margin-left: 10px;
+        }
+          .players-basic-right-a {
+            display: flex;
+          }
+            .players-basic-copy {
+              font-size: 18px;
+              font-weight: bold;
+              color: #008803
+            }
+
+            /*いいねと詳細*/
+            .player-right-container {
+              display: flex;
+              margin-left: auto; /* 右側に余白を自動的に設定 */
+            }
+              /*いいねボタン*/
+              .like button {
+                margin-right: 10px;
+                border: none;
+                background-color: transparent;
+              }
+              /* 未選択時のスタイル */
+              .like .unselected .fa-heart {
+                color: #686868; /* 未選択時のアイコンの色 */
+                font-size: 24px; /* ハートマークのサイズを変更する */
+              }
+              /* 選択時のスタイル */
+              .like .selected .fa-heart {
+                color: #008803; /* 選択時のアイコンの色 */
+                font-size: 24px; /* ハートマークのサイズを変更する */
+              }
+              /*詳細ボタン*/
+              .player-detail-button a {
+                text-decoration: none; /* 下線を消す */
+                color: white !important; /* リンクの色を白にする */
+                display: flex; /* 水平方向の中央揃え */
+                align-items: center; /* 垂直方向の中央揃え */
+                justify-content: center; /* 水平方向の中央揃え */
+                height: 100%; /* 高さを100%に設定 */
+              }
+              .player-detail-button {
+                font-size: 13px;
+                display       : inline-block;
+                border-radius : 2px; /* 角丸にする */
+                text-align    : center;
+                height        : 22px;
+                width: 27px;
+                cursor        : pointer; /* マウスポインターを変更してボタンのクリックを示す */
+                padding       : 2px 10px; /* 内側の余白 */
+                background    : #008803; /* 背景色 */
+                color         : #ffffff; /* 文字色 */
+                line-height   : 1em;
+                transition    : .3s; /* なめらか変化 */
+                border        : 2px solid #008803; /* 枠線 */
+                margin-left: auto;
+              }
+              .player-detail-button:hover {
+                color         : #ffffff; /* 文字色 */
+                background    : #006402; /* 背景色 */
+                border        : 2px solid #006402; /* 枠線 */
+              }
+          /*概要*/
+          .players-basic-summarytext {
+            font-size: 14px;
+          }
+          /*その他情報*/
+          .players-basic-other {
+            display: flex;
+            font-size: 12px;
+            background-color: #f0f0f0;
+            border-radius: 2px;
+            height: 18px;
+            padding: 3px 5px;
+          }
+            .players-basic-throwsbats {
+            }
+            .players-basic-heightweight {
+              margin-left: 10px;
+            }
+            .players-basic-prefecture {
+              margin-left: 10px;
+            }
+            .players-basic-career {
+              margin-left: 10px;
+            }
+            .players-basic-birthday {
+              margin-left: 10px;
+            }
+    
+    .player-sub-box {
+      display: flex;
+    }
+      .player-tab-box {
+        font-size: 12px;
+        color:#4B4B4B;
+        height: 12px;
+      }
+
+      .player-administrate {
+        display: flex;
+        font-size: 8px;
+      }
+        .player-administrate input[type="submit"] {
+          background-color: transparent; /* 背景色 */
+          font-size: 8px; /* フォントサイズ */
+          border: none; /* ボーダーを削除 */
+          cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+        }
+    /*日時*/      
+    .player-time {
+      display: flex;
+      margin-left: auto;
+      font-size: 12px;
+      height: 12px;
+      color: #4B4B4B
+    }
+
+/*索引*/
+.sakuin-container {
+  position: absolute;
+  justify-content: center; /* 中央揃えにする */
+  width: 110px;
+  height: 490px;
+  margin: 10px;
+  top: 650px;
+  left: 0px;
+  background-color: #000000;
+}
+  .sakuin-container h2 {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    margin: 5px;
+    font-size: 16px;
+    color: #FFFFFF
+  }
+  .sakuin {
+    justify-content: space-between;
+    margin: 0px auto;
+    width: 90px;
+  }
+
+  .sakuin {
+    justify-content: space-between;
+    margin: 0px auto;
+    width: 90px;
+  }
+  .sakuin input[type="submit"] {
+    background-color: transparent; /* 背景を透明にする */
+    border: none; /* 枠線を消す */
+    font-size: 15px;
+    color: #FFFFFF;
+  }
+  .sakuin input[type="submit"]:hover {
+    background-color: transparent; /* 背景を透明にする */
+    border: none; /* 枠線を消す */
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+    .agyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+    }
+    .kagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .sagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .tagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .nagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .hagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .magyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .yagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .ragyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .wagyosakuin {
+      display: flex;
+      justify-content: start;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .gagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 20px;
+    }
+    .zagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .dagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .bagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }
+    .pagyosakuin {
+      display: flex;
+      justify-content: space-between;
+      width: 90px;
+      margin-top: 5px;
+    }

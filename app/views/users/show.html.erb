@@ -1,0 +1,45 @@
+<h1>マイページ</h1>
+<p>名前 : <%= @user.name %></p>
+<p>メールアドレス : <%= @user.email %></p>
+<p>プロフィール : <%= @user.profile %></p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+<h2>お気に入り</h2>
+<% @user.liked_players.each do |t| %>
+  <%= t.name %>
+  <%= t.category %>
+  <%= t.belong %>
+  <%= t.throws %>
+  <%= t.bats %>
+  <%= t.height %>
+  <%= t.weight %>
+  <%= t.summarytext %>
+<% end %>
+
+<h2>ユーザーのコメント一覧</h2>
+<% @user.commented_players.each do |t| %>
+  <%= t.name %>
+  <%= t.category %>
+  <%= t.belong %>
+  <%= t.throws %>
+  <%= t.bats %>
+  <%= t.height %>
+  <%= t.weight %>
+  <%= t.summarytext %>
+  <% t.comments.each do |c| %>
+    <%= c.content %>
+  <% end %>
+<% end %>
+
+<h2>いいねしたコメント一覧</h2>
+<% @user.favorited_comments.each do |c| %>
+  <%= c.user.name %>
+  <%= c.content %>
+  <%= c.created_at %>
+  <%= c.updated_at %>
+<% end %>
+
+<%= link_to "選手一覧に戻る", players_path %>

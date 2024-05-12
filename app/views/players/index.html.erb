@@ -1,0 +1,1195 @@
+<h3>ホーム</h3>
+
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+<div class="search-container">
+  <div class="search-box">
+    <%= form_tag(players_path, method: "get") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "検索ワードを入力", class: "search-box-text-field" %>  
+
+      <div class="search-box-tagandbutton">  
+        <div class="search-box-tag">
+          <label class="custom-checkbox">
+            <%= check_box_tag "search_columns[]", "name", params[:search_columns].present? && params[:search_columns].include?("name"), checked: true, class: 'search-column' %>
+            <%= label_tag "name", "名前" %>
+            <%= check_box_tag "search_columns[]", "belong", params[:search_columns].present? && params[:search_columns].include?("belong"), checked: true, class: 'search-column' %>
+            <%= label_tag "belong", "所属" %>
+            <%= check_box_tag "search_columns[]", "league", params[:search_columns].present? && params[:search_columns].include?("league"), checked: true, class: 'search-column' %>
+            <%= label_tag "league", "リーグ" %>
+            <%= check_box_tag "search_columns[]", "career", params[:search_columns].present? && params[:search_columns].include?("career"), checked: true, class: 'search-column' %>
+            <%= label_tag "career", "経歴" %>
+            <%= check_box_tag "search_columns[]", "explanation", params[:search_columns].present? && params[:search_columns].include?("explanation"), checked: true, class: 'search-column' %>
+            <%= label_tag "explanation", "本文" %>
+          </label>
+          <%= button_tag "全選択", type: 'button', id: 'checkAllButton' %>
+        </div>
+
+        <input type="submit" value="検索" class="search-box-button">
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var checkAllButton = document.getElementById('checkAllButton');
+      if (checkAllButton) {
+        checkAllButton.addEventListener('click', function() {
+          var checkboxes = document.querySelectorAll('.search-column');
+          var allChecked = true;
+          checkboxes.forEach(function(checkbox) {
+            if (!checkbox.checked) {
+              allChecked = false;
+            }
+          });
+          checkboxes.forEach(function(checkbox) {
+            checkbox.checked = !allChecked;
+          });
+        });
+      }
+    });
+  </script>
+
+  <div class="search-detail">
+    <%= form_tag(players_path, method: "get") do %>
+      <div class="search-detail-up">
+        <div class="search-detail-basic">
+          <div class="search-detail-category"> 
+            <div class="search-detail-category-tag">
+              <%= check_box_tag "categorysearch[]", "高校" %>
+              <%= label_tag "category", "高校生" %>
+              <%= check_box_tag "categorysearch[]", "大学" %>
+              <%= label_tag "category", "大学生" %>
+              <%= check_box_tag "categorysearch[]", "社会人" %>
+              <%= label_tag "category", "社会人" %>
+              <%= check_box_tag "categorysearch[]", "独立L" %>
+              <%= label_tag "category", "独立リーグ" %>
+            </div>
+          </div>
+
+          <div class="search-detail-basic-b">
+            <div class="search-detail-basic-throwsbats">
+              <%= select_tag :tsearch, options_for_select(
+              [["ー", nil],
+              ["右", "右"], 
+              ["左", "左"], 
+              ["両", "両"]]) %> 
+              <%= label_tag "throws", "投" %>
+            
+              <%= select_tag :bsearch, options_for_select(
+              [["ー", nil],
+              ["右", "右"], 
+              ["左", "左"], 
+              ["両", "両"]]) %> 
+              <%= label_tag "bats", "打" %>
+            </div>
+
+            <div class="search-detail-basic-prefecture">
+              <%= select_tag :psearch, options_for_select(
+              [["ー", nil],
+              ["北海道", "北海道"], 
+              ["青森", "青森"], 
+              ["岩手", "岩手"], 
+              ["宮城", "宮城"],
+              ["秋田", "秋田"], 
+              ["山形", "山形"], 
+              ["福島", "福島"], 
+              ["茨城", "茨城"],
+              ["栃木", "栃木"], 
+              ["群馬", "群馬"], 
+              ["埼玉", "埼玉"], 
+              ["千葉", "千葉"],
+              ["東京", "東京"], 
+              ["神奈川", "神奈川"], 
+              ["山梨", "山梨"], 
+              ["新潟", "新潟"],
+              ["富山", "富山"], 
+              ["石川", "石川"], 
+              ["福井", "福井"], 
+              ["長野", "長野"],
+              ["岐阜", "岐阜"], 
+              ["静岡", "静岡"], 
+              ["愛知", "愛知"], 
+              ["三重", "三重"], 
+              ["滋賀", "滋賀"], 
+              ["京都", "京都"],
+              ["大阪", "大阪"], 
+              ["兵庫", "兵庫"], 
+              ["奈良", "奈良"], 
+              ["和歌山", "和歌山"], 
+              ["鳥取", "鳥取"], 
+              ["島根", "島根"],
+              ["岡山", "岡山"], 
+              ["広島", "広島"], 
+              ["山口", "山口"], 
+              ["徳島", "徳島"], 
+              ["香川", "香川"], 
+              ["愛媛", "愛媛"],
+              ["高知", "高知"], 
+              ["福岡", "福岡"], 
+              ["佐賀", "佐賀"], 
+              ["長崎", "長崎"], 
+              ["熊本", "熊本"], 
+              ["大分", "大分"],
+              ["宮崎", "宮崎"], 
+              ["鹿児島", "鹿児島"], 
+              ["沖縄", "沖縄"]]) %> 
+              <%= label_tag "prefecture", "出身" %>
+            </div>
+
+            <div class="search-detail-basic-birthday">
+              <%= label_tag "birthday", "生年月日" %>
+              <%= select_tag :yearsearch, options_for_select(
+              [["ー", nil],
+              ["1996", "1996"], 
+              ["1997", "1997"],
+              ["1998", "1998"],
+              ["1999", "1999"], 
+              ["2000", "2000"],
+              ["2001", "2001"], 
+              ["2002", "2002"],
+              ["2003", "2003"],
+              ["2004", "2004"], 
+              ["2005", "2005"],
+              ["2006", "2006"],
+              ["2007", "2007"]]) %> 
+              
+              <div class="search-detail-basic-birthday-tag">
+                <label><input type="radio" class="radio-button"  name="birthdaysearch_columns" value="cyear" checked> 年</label>
+                <label><input type="radio" class="radio-button"  name="birthdaysearch_columns" value="fyear"> 年度</label>
+              </div>
+
+              <div class="search-detail-basic-birthday-month">
+                <%= select_tag :monthsearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"],
+                ["12", "12"]]) %> 
+                <%= label_tag "month", "月" %>
+              </div>
+
+              <div class="search-detail-basic-birthday-date">
+                <%= select_tag :datesearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"],
+                ["12", "12"],
+                ["13", "13"],
+                ["14", "14"],
+                ["15", "15"],
+                ["16", "16"],
+                ["17", "17"],
+                ["18", "18"],
+                ["19", "19"],
+                ["20", "20"],
+                ["21", "21"],
+                ["22", "22"],
+                ["23", "23"],
+                ["24", "24"],
+                ["25", "25"],
+                ["26", "26"],
+                ["27", "27"],
+                ["28", "28"],
+                ["29", "29"],
+                ["30", "30"],
+                ["31", "31"]]) %> 
+                <%= label_tag "date", "日" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="search-detail-expectation">
+          <% Etag.all.each do |t| %>
+            <li>
+              <%= check_box :etag_ids, t.expectation %>
+              <span class="search-detail-expectation-label"><%= t.expectation %></span>
+            </li>
+          <% end %>
+          
+          <div class="search-detail-expectation-radio">
+            <label><input type="radio" class="radio-button" name="etagsearch_type" value="and" checked> AND</label>
+            <label><input type="radio" class="radio-button" name="etagsearch_type" value="or"> OR</label>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="search-detail-position">
+        <div class="search-detail-position-tag">
+          <div class="search-detail-position-tag-button">
+            <%= button_tag "投手", type: 'button', id: 'pitcher-checkAllButton' %>
+            <%= button_tag "野手", type: 'button', id: 'fielder-checkAllButton' %>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var pitcherCheckAllButton = document.getElementById('pitcher-checkAllButton');
+              if (pitcherCheckAllButton) {
+                pitcherCheckAllButton.addEventListener('click', function() {
+                  var mptagCheckboxes = document.querySelectorAll('.mptag-list input[type="checkbox"]');
+                  mptagCheckboxes.forEach(function(checkbox) {
+                    checkbox.checked = true;
+                  });
+          
+                  var wptagCheckboxes = document.querySelectorAll('.wptag-list input[type="checkbox"]');
+                  wptagCheckboxes.forEach(function(checkbox) {
+                    checkbox.checked = true;
+                  });
+                });
+              }
+          
+              var fielderCheckAllButton = document.getElementById('fielder-checkAllButton');
+              if (fielderCheckAllButton) {
+                fielderCheckAllButton.addEventListener('click', function() {
+                  var mftagCheckboxes = document.querySelectorAll('.mftag-list input[type="checkbox"]');
+                  mftagCheckboxes.forEach(function(checkbox) {
+                    checkbox.checked = true;
+                  });
+          
+                  var wftagCheckboxes = document.querySelectorAll('.wftag-list input[type="checkbox"]');
+                  wftagCheckboxes.forEach(function(checkbox) {
+                    checkbox.checked = true;
+                  });
+                });
+              }
+          
+              var clearAllButton = document.getElementById('clearAllButton');
+              if (clearAllButton) {
+                clearAllButton.addEventListener('click', function() {
+                  var allCheckboxes = document.querySelectorAll('.mptag-list input[type="checkbox"], .wptag-list input[type="checkbox"], .mftag-list input[type="checkbox"], .wftag-list input[type="checkbox"]');
+                  allCheckboxes.forEach(function(checkbox) {
+                    checkbox.checked = false;
+                  });
+                });
+              }
+            });
+          </script>
+
+          <div class="search-detail-position-tag-list">
+            <div class="mtag-list">
+              <div class="mptag-list">
+                <% Mptag.all.each do |t| %>
+                  <li>
+                    <%= check_box :mptag_ids, t.main_p_position %>
+                    <span class="mtag-checkbox-label"><%= t.main_p_position %></span>
+                  </li>
+                <% end %>
+              </div>
+
+              <div class="mftag-list">
+                <div class="mfctag-list">
+                  <% Mfctag.all.each do |t| %>
+                    <li>
+                      <%= check_box :mfctag_ids, t.main_fc_position %>
+                      <span class="mtag-checkbox-label"><%= t.main_fc_position %></span>
+                    </li>
+                  <% end %>
+                </div>
+
+                <div class="mfitag-list">
+                  <% Mfitag.all.each do |t| %>
+                    <li>
+                      <%= check_box :mfitag_ids, t.main_fi_position %>
+                      <span class="mtag-checkbox-label"><%= t.main_fi_position %></span>
+                    </li>
+                  <% end %>
+                </div>
+
+                <div class="mfotag-list">
+                  <% Mfotag.all.each do |t| %>
+                    <li>
+                      <%= check_box :mfotag_ids, t.main_fo_position %>
+                      <span class="mtag-checkbox-label"><%= t.main_fo_position %></span> <!-- チェックボックスのラベル -->
+                    </li>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="wtag-list" style="display: none;">
+              <div class="wptag-list">
+                <% Wptag.all.each do |t| %>
+                  <li>
+                    <%= check_box :wptag_ids, t.whole_p_position %>
+                    <span class="wtag-checkbox-label"><%= t.whole_p_position %></span>
+                  </li>
+                <% end %>
+              </div>
+
+              <div class="wftag-list">
+                <div class="wfctag-list">
+                  <% Wfctag.all.each do |t| %>
+                    <li>
+                      <%= check_box :wfctag_ids, t.whole_fc_position %>
+                      <span class="wtag-checkbox-label"><%= t.whole_fc_position %></span>
+                    </li>
+                  <% end %>
+                </div>
+
+                <div class="wfitag-list">
+                  <% Wfitag.all.each do |t| %>
+                    <li>
+                      <%= check_box :wfitag_ids, t.whole_fi_position %>
+                      <span class="wtag-checkbox-label"><%= t.whole_fi_position %></span>
+                    </li>
+                  <% end %>
+                </div>
+
+                <div class="wfotag-list">
+                  <% Wfotag.all.each do |t| %>
+                    <li>
+                      <%= check_box :wfotag_ids, t.whole_fo_position %>
+                      <span class="wtag-checkbox-label"><%= t.whole_fo_position %></span>
+                    </li>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-detail-position-tag-radio">
+            <%= button_tag "選択解除", type: 'button', id: 'clearAllButton' %>
+
+            <div class="search-detail-position-tag-radio-mainsub">
+              <label><input type="radio" class="radio-button"  name="search_type" value="mtag" checked> メイン</label>
+              <label><input type="radio" class="radio-button"  name="search_type" value="wtag"> 全部</label>
+            </div>
+          
+            <div class="search-detail-position-tag-radio-andor">
+              <label><input type="radio" class="radio-button"  name="mstagsearch_type" value="and" checked> AND</label>
+              <label><input type="radio" class="radio-button"  name="mstagsearch_type" value="or"> OR</label>
+            </div>
+          </div>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script>
+          $(document).ready(function(){
+            $('input[name="search_type"]').on('change', function(){
+              var selected = $(this).val();
+              if (selected === 'mtag') {
+                $('.wtag-list').hide();
+                $('.mtag-list').show();
+              } else {
+                $('.mtag-list').hide();
+                $('.wtag-list').show();
+              }
+            });
+          
+            $('input[name="mstagsearch_type"]').on('change', function(){
+              var selected = $(this).val();
+              if (selected === 'and') {
+                // mtag検索のAND処理を実行
+              } else {
+                // mtag検索のOR処理を実行
+              }
+            });
+            
+            $('input[name="mstagsearch_type"]').on('change', function(){
+              var selected = $(this).val();
+              if (selected === 'and') {
+                // stag検索のAND処理を実行
+              } else {
+                // stag検索のOR処理を実行
+              }
+            });
+          });
+          </script>
+        </div>
+
+        <div class="search-detail-parameter">
+          <div class="search-detail-parameter-pitcher">
+            <div class="search-detail-parameter-pitcher-a">
+              <div class="search-detail-parameter-pitcher-powerful">
+                <%= label_tag "powerful", "球威" %>
+                <%= select_tag :powerfulsearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+
+              <div class="search-detail-parameter-pitcher-control">
+                <%= label_tag "control", "制球" %>
+                <%= select_tag :controlsearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+            </div>
+
+            <div class="search-detail-parameter-pitcher-b">
+              <div class="search-detail-parameter-pitcher-stamina">
+                <%= label_tag "stamina", "スタミナ" %>
+                <%= select_tag :staminasearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+
+              <div class="search-detail-parameter-pitcher-breaking">
+                <%= label_tag "breaking", "変化球" %>
+                <%= select_tag :breakingsearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"],
+                ["4", "4"],
+                ["5", "5"],
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+            </div>
+          </div>
+
+          <div class="search-detail-parameter-fielder">
+            <div class="search-detail-parameter-fielder-a">
+              <div class="search-detail-parameter-fielder-meet">
+                <%= label_tag "meet", "ミート" %>
+                <%= select_tag :meetsearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+
+              <div class="search-detail-parameter-fielder-power">
+                <%= label_tag "power", "パワー" %>
+                <%= select_tag :powersearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+            </div>
+            
+            <div class="search-detail-parameter-fielder-b">
+              <div class="search-detail-parameter-fielder-running">
+                <%= label_tag "running", "走塁" %>
+                <%= select_tag :runningsearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"], 
+                ["4", "4"],
+                ["5", "5"], 
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %>
+              </div>
+
+              <div class="search-detail-parameter-fielder-defence">
+                <%= label_tag "defence", "守備" %>
+                <%= select_tag :defencesearch, options_for_select(
+                [["ー", nil],
+                ["1", "1"],
+                ["2", "2"],
+                ["3", "3"],
+                ["4", "4"],
+                ["5", "5"],
+                ["6", "6"],
+                ["7", "7"],
+                ["8", "8"], 
+                ["9", "9"],
+                ["10", "10"],
+                ["11", "11"]]) %> 
+              </div>
+            </div>
+          </div>
+
+          <div class="search-detail-parameter-radio">
+            <label><input type="radio" class="radio-button" name="parametersearch_columns" value="just" checked> 一致</label>
+            <label><input type="radio" class="radio-button" name="parametersearch_columns" value="over"> 以上</label>
+          </div>
+        </div>
+
+        <div class="search-detail-position-variety">
+          <div class="vtag-list">
+            <div class="vltag-list">
+              <% Vltag.all.each do |t| %>
+                <li>
+                  <%= check_box :vltag_ids, t.variety %>
+                  <span class="vtag-checkbox-label"><%= t.variety %></span>
+                </li>
+              <% end %>
+            </div>
+
+            <div class="vlltag-list">
+              <% Vlltag.all.each do |t| %>
+                <li>
+                  <%= check_box :vlltag_ids, t.variety %>
+                  <span class="vtag-checkbox-label"><%= t.variety %></span>
+                </li>
+              <% end %>
+            </div>
+
+            <div class="vutag-list">
+              <% Vutag.all.each do |t| %>
+                <li>
+                  <%= check_box :vutag_ids, t.variety %>
+                  <span class="vtag-checkbox-label"><%= t.variety %></span>
+                </li>
+              <% end %>
+            </div>
+
+            <div class="vlrtag-list">
+              <% Vlrtag.all.each do |t| %>
+                <li>
+                  <%= check_box :vlrtag_ids, t.variety %>
+                  <span class="vtag-checkbox-label"><%= t.variety %></span>
+                </li>
+              <% end %>
+            </div>
+
+            <div class="vrtag-list">
+              <% Vrtag.all.each do |t| %>
+                <li>
+                  <%= check_box :vrtag_ids, t.variety %>
+                  <span class="vtag-checkbox-label"><%= t.variety %></span>
+                </li>
+              <% end %>
+            </div>
+
+            <div class="vtag-list-figure">
+              <div class="vtag-list-ball"></div>
+              <div class="vtag-list-left"></div>
+              <div class="vtag-list-lowerleft"></div>
+              <div class="vtag-list-under"></div>
+              <div class="vtag-list-lowerright"></div>
+              <div class="vtag-list-right"></div>
+            </div>
+          </div>
+
+          <div class="vtag-list-radio-button">
+            <label><input type="radio" class="radio-button" name="vtagsearch_type" value="and" checked> AND</label>
+            <label><input type="radio" class="radio-button" name="vtagsearch_type" value="or"> OR</label>
+          </div>
+
+          <button id="selectAllButton" type="button">全選択</button>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var selectAllButton = document.getElementById('selectAllButton');
+              if (selectAllButton) {
+                selectAllButton.addEventListener('click', function() {
+                  var checkboxes = document.querySelectorAll('.vltag-list input[type="checkbox"], .vlltag-list input[type="checkbox"], .vutag-list input[type="checkbox"], .vlrtag-list input[type="checkbox"], .vrtag-list input[type="checkbox"]');
+                  var allChecked = true;
+                  checkboxes.forEach(function(checkbox) {
+                    if (!checkbox.checked) {
+                      allChecked = false;
+                    }
+                  });
+                  checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = !allChecked;
+                  });
+                });
+              }
+            });
+          </script>
+        </div>
+      </div>
+
+      <div class="search-detail-tag">
+        <% Tag.all.each do |t| %>
+          <li>
+            <%= check_box :tag_ids, t.body %>
+            <span class="search-detail-tag-label"><%= t.body %></span>
+          </li>
+        <% end %>
+
+        <div class="search-detail-tag-radio">
+          <label><input type="radio" class="radio-button" name="tagsearch_type" value="and" checked> AND</label>
+          <label><input type="radio" class="radio-button" name="tagsearch_type" value="or"> OR</label>
+        </div>
+      </div>
+  </div>
+
+      <div class="search-detail-button-block">
+        <input type="submit" value="検索" class="search-detail-button">
+      </div>
+
+    <% end %>
+</div>
+
+<div class="players-container">
+  <%= link_to "検索解除", players_path, class: "search-cancel" %>
+  
+  <% @players.each do |t| %>
+    <div class="player-box">
+      <div class="player-main-box">
+        <div class="players-basic">
+          <div class="players-basic-left">
+            <div class="players-basic-left-a">
+              <div class="players-basic-category"><%= t.category %></div>
+              
+              <div class="players-basic-mtag">
+                <% t.mptags.each do |mptag| %>
+                  <span><%= mptag.main_p_position %></span>
+                <% end %>
+              
+                <% t.mfctags.each do |mfctag| %>
+                  <span><%= mfctag.main_fc_position %></span>
+                <% end %>
+              
+                <% t.mfitags.each do |mfitag| %>
+                  <span><%= mfitag.main_fi_position %></span>
+                <% end %>
+              
+                <% t.mfotags.each do |mfotag| %>
+                  <span><%= mfotag.main_fo_position %></span>
+                <% end %>
+              </div>
+
+              <div class="players-basic-stag">
+                <% t.sptags.each do |sptag| %>
+                  <span><%= sptag.sub_p_position %></span>
+                <% end %>
+              
+                <% t.sfctags.each do |sfctag| %>
+                  <span><%= sfctag.sub_fc_position %></span>
+                <% end %>
+              
+                <% t.sfitags.each do |sfitag| %>
+                  <span><%= sfitag.sub_fi_position %></span>
+                <% end %>
+              
+                <% t.sfotags.each do |sfotag| %>
+                  <span><%= sfotag.sub_fo_position %></span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="players-basic-left-b">
+              <div class="players-basic-name"><%= t.name %></div>
+              <div class="players-basic-belongandexpectation">
+                <div class="players-basic-belong"><%= t.belong %></div>
+                <div class="players-basic-expectation">
+                  <% t.etags.each do |etag| %>
+                    <%= etag.expectation %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="players-basic-right">
+            <div class="players-basic-right-a">
+              <div class="players-basic-copy">
+                <%= t.copy %>
+              </div>
+
+              <div class="player-right-container">
+                <div class="like">
+                  <% if user_signed_in? %>
+                    <% if current_user.already_liked?(t) %>
+                      <%= button_to player_like_path(id: t.id, player_id: t.id), method: :delete, class: 'selected' do %>
+                        <i class="fas fa-heart"></i><%= t.likes.count %>
+                      <% end %>
+                    <% else %>
+                      <%= button_to player_likes_path(id: t.id, player_id: t.id), method: :post, class: 'unselected' do %>
+                        <i class="far fa-heart"></i><%= t.likes.count %>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <p>いいねの数 = <%= t.likes.count %></p>
+                  <% end %>
+                </div>
+                
+                <div class="player-detail-button">
+                  <%= link_to "詳細", player_path(t.id) %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="players-basic-right-b">
+              <div class="players-basic-summarytext"><%= t.summarytext %></div>
+              <div class="players-basic-other">
+                <div class="players-basic-throwsbats"><%= t.throws %>/<%= t.bats %></div>
+                <div class="players-basic-heightweight"><%= t.height %>cm/<%= t.weight %>kg</div>
+                <div class="players-basic-prefecture"><%= t.prefecture %></div>
+                <div class="players-basic-career"><%= t.career %></div>
+                <div class="players-basic-birthday"><%= t.cyear %>年<%= t.month %>月<%= t.date %>日</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="player-sub-box">
+        <div class="player-tab-box">
+          <% t.tags.each do |tag| %>
+            <span>#<%= tag.body %></span>
+          <% end %>
+        </div>
+        
+        <div class="player-administrate">
+          <% if user_signed_in? && current_user.id == t.user_id %>
+              <%= link_to "編集する", edit_player_path(t.id) %>
+              <%= button_to "削除する", player_path(t.id), method: :delete %>
+          <% end %> 
+        </div>
+      
+        <div class="player-time">
+          <%= t.created_at.strftime('%-m月%-d日') %>投稿
+          <%= t.updated_at.strftime('%-m月%-d日') %>編集
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="sakuin-container">
+  <h2>索引</h2>
+  
+  <div class="sakuin">
+    <div class="agyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="あ">
+        <input type="submit" value="あ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="い">
+        <input type="submit" value="い">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="う">
+        <input type="submit" value="う">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="え">
+        <input type="submit" value="え">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="お">
+        <input type="submit" value="お">
+      <% end %>
+    </div>
+
+    <div class="kagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="か">
+        <input type="submit" value="か">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="き">
+        <input type="submit" value="き">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="く">
+        <input type="submit" value="く">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="け">
+        <input type="submit" value="け">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="こ">
+        <input type="submit" value="こ">
+      <% end %>
+    </div>
+
+    <div class="sagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="さ">
+        <input type="submit" value="さ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="し">
+        <input type="submit" value="し">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="す">
+        <input type="submit" value="す">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="せ">
+        <input type="submit" value="せ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="そ">
+        <input type="submit" value="そ">
+      <% end %>
+    </div>
+
+    <div class="tagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="た">
+        <input type="submit" value="た">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ち">
+        <input type="submit" value="ち">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="つ">
+        <input type="submit" value="つ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="て">
+        <input type="submit" value="て">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="と">
+        <input type="submit" value="と">
+      <% end %>
+    </div>
+
+    <div class="nagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="な">
+        <input type="submit" value="な">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="に">
+        <input type="submit" value="に">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ぬ">
+        <input type="submit" value="ぬ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ね">
+        <input type="submit" value="ね">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="の">
+        <input type="submit" value="の">
+      <% end %>
+    </div>
+
+    <div class="hagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="は">
+        <input type="submit" value="は">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ひ">
+        <input type="submit" value="ひ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ふ">
+        <input type="submit" value="ふ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="へ">
+        <input type="submit" value="へ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ほ">
+        <input type="submit" value="ほ">
+      <% end %>
+    </div>
+
+    <div class="magyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ま">
+        <input type="submit" value="ま">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="み">
+        <input type="submit" value="み">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="む">
+        <input type="submit" value="む">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="め">
+        <input type="submit" value="め">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="も">
+        <input type="submit" value="も">
+      <% end %>
+    </div>
+
+    <div class="yagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="や">
+        <input type="submit" value="や">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ゆ">
+        <input type="submit" value="ゆ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="よ">
+        <input type="submit" value="よ">
+      <% end %>
+    </div>
+
+    <div class="ragyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ら">
+        <input type="submit" value="ら">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="り">
+        <input type="submit" value="り">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="る">
+        <input type="submit" value="る">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="れ">
+        <input type="submit" value="れ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ろ">
+        <input type="submit" value="ろ">
+      <% end %>
+    </div>
+
+    <div class="wagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="わ">
+        <input type="submit" value="わ">
+      <% end %>
+    </div>
+
+    <div class="gagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="が">
+        <input type="submit" value="が">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぎ">
+        <input type="submit" value="ぎ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぐ">
+        <input type="submit" value="ぐ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="げ">
+        <input type="submit" value="げ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ご">
+        <input type="submit" value="ご">
+      <% end %>
+    </div>
+
+    <div class="zagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ざ">
+        <input type="submit" value="ざ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="じ">
+        <input type="submit" value="じ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ず">
+        <input type="submit" value="ず">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぜ">
+        <input type="submit" value="ぜ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぞ">
+        <input type="submit" value="ぞ">
+      <% end %>
+    </div>
+
+    <div class="dagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="だ">
+        <input type="submit" value="だ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぢ">
+        <input type="submit" value="ぢ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>    
+        <input type="hidden" name="sakuinsearch_columns" value="づ">
+        <input type="submit" value="づ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="で">
+        <input type="submit" value="で">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ど">
+        <input type="submit" value="ど">
+      <% end %>
+    </div>
+
+    <div class="bagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ば">
+        <input type="submit" value="ば">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="び">
+        <input type="submit" value="び">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぶ">
+        <input type="submit" value="ぶ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="べ">
+        <input type="submit" value="べ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぼ">
+        <input type="submit" value="ぼ">
+      <% end %>
+    </div>
+
+    <div class="pagyosakuin">
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぱ">
+        <input type="submit" value="ぱ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぴ">
+        <input type="submit" value="ぴ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぷ">
+        <input type="submit" value="ぷ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>  
+        <input type="hidden" name="sakuinsearch_columns" value="ぺ">
+        <input type="submit" value="ぺ">
+      <% end %>
+
+      <%= form_tag({controller:"players",action:"index"}, method: :get) do %>
+        <input type="hidden" name="sakuinsearch_columns" value="ぽ">
+        <input type="submit" value="ぽ">
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= link_to "お問い合わせフォームへ", new_request_path %>
+<% end %>
+
+  </body>
+</html>

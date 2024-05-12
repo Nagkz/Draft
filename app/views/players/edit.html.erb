@@ -1,0 +1,622 @@
+<h1>ドラフト</h1>
+<h3>新規投稿ページ</h3>
+
+<%= form_for @player do |f| %>
+
+  <div class="field">
+    <%= f.label :category  %>
+    <%= f.select :category, 
+    [["高校", "高校"], 
+    ["大学", "大学"], 
+    ["社会人", "社会人"], 
+    ["独立L", "独立L"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :氏名 %>
+    <%= f.text_field :name, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ふりがな %>
+    <%= f.text_field :furigana, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :所属 %>
+    <%= f.text_field :belong, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :連盟 %>
+    <%= f.text_field :league, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.select :throws, 
+    [["右", "右"], 
+    ["左", "左"],
+    ["両", "両"]], include_blank: "選択して下さい" %>
+    <%= f.label :投  %>
+  </div>
+
+  <div class="field">
+    <%= f.select :bats, 
+    [["右", "右"], 
+    ["左", "左"],
+    ["両", "両"]], include_blank: "選択して下さい" %>
+    <%= f.label :打  %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :メイン投手ポジション  %>
+    <%= f.collection_check_boxes(:mptag_ids, Mptag.all, :id, :main_p_position) do |mptag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= mptag.check_box class: 'form-check-input' %>
+          <%= mptag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :メイン野手ポジション  %>
+    <%= f.collection_check_boxes(:mfctag_ids, Mfctag.all, :id, :main_fc_position) do |mfctag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= mfctag.check_box class: 'form-check-input' %>
+          <%= mfctag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:mfitag_ids, Mfitag.all, :id, :main_fi_position) do |mfitag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= mfitag.check_box class: 'form-check-input' %>
+          <%= mfitag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:mfotag_ids, Mfotag.all, :id, :main_fo_position) do |mfotag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= mfotag.check_box class: 'form-check-input' %>
+          <%= mfotag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :サブ投手ポジション  %>
+    <%= f.collection_check_boxes(:sptag_ids, Sptag.all, :id, :sub_p_position) do |sptag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= sptag.check_box class: 'form-check-input' %>
+          <%= sptag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :サブ野手ポジション  %>
+    <%= f.collection_check_boxes(:sfctag_ids, Sfctag.all, :id, :sub_fc_position) do |sfctag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= sfctag.check_box class: 'form-check-input' %>
+          <%= sfctag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:sfitag_ids, Sfitag.all, :id, :sub_fi_position) do |sfitag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= sfitag.check_box class: 'form-check-input' %>
+          <%= sfitag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:sfotag_ids, Sfotag.all, :id, :sub_fo_position) do |sfotag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= sfotag.check_box class: 'form-check-input' %>
+          <%= sfotag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :全投手ポジション  %>
+    <%= f.collection_check_boxes(:wptag_ids, Wptag.all, :id, :whole_p_position) do |wptag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= wptag.check_box class: 'form-check-input' %>
+          <%= wptag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :全野手ポジション  %>
+    <%= f.collection_check_boxes(:wfctag_ids, Wfctag.all, :id, :whole_fc_position) do |wfctag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= wfctag.check_box class: 'form-check-input' %>
+          <%= wfctag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:wfitag_ids, Wfitag.all, :id, :whole_fi_position) do |wfitag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= wfitag.check_box class: 'form-check-input' %>
+          <%= wfitag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:wfotag_ids, Wfotag.all, :id, :whole_fo_position) do |wfotag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= wfotag.check_box class: 'form-check-input' %>
+          <%= wfotag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :予想順位  %>
+    <%= f.collection_check_boxes(:etag_ids, Etag.all, :id, :expectation) do |etag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= etag.check_box class: 'form-check-input' %>
+          <%= etag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :身長  %>
+    <%= f.number_field :height, :size => 10 %>
+    <%= f.label :cm  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :体重  %>
+    <%= f.number_field :weight, :size => 10 %>
+    <%= f.label :kg  %>
+  </div>
+
+  <%= f.label :生年月日  %>
+  <div class="field">
+    <%= f.label :年度  %>
+    <%= f.select :fyear, 
+    [["1996", "1996"], 
+    ["1997", "1997"],
+    ["1998", "1998"],
+    ["1999", "1999"], 
+    ["2000", "2000"],
+    ["2001", "2001"], 
+    ["2002", "2002"],
+    ["2003", "2003"],
+    ["2004", "2004"], 
+    ["2005", "2005"],
+    ["2006", "2006"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :年  %>
+    <%= f.select :cyear, 
+    [["1997", "1997"],
+    ["1998", "1998"],
+    ["1999", "1999"], 
+    ["2000", "2000"],
+    ["2001", "2001"], 
+    ["2002", "2002"],
+    ["2003", "2003"],
+    ["2004", "2004"], 
+    ["2005", "2005"],
+    ["2006", "2006"],
+    ["2007", "2007"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :月  %>
+    <%= f.select :month, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"],
+    ["12", "12"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :日  %>
+    <%= f.select :date, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"],
+    ["12", "12"],
+    ["13", "13"],
+    ["14", "14"],
+    ["15", "15"],
+    ["16", "16"],
+    ["17", "17"],
+    ["18", "18"],
+    ["19", "19"],
+    ["20", "20"],
+    ["21", "21"],
+    ["22", "22"],
+    ["23", "23"],
+    ["24", "24"],
+    ["25", "25"],
+    ["26", "26"],
+    ["27", "27"],
+    ["28", "28"],
+    ["29", "29"],
+    ["30", "30"],
+    ["31", "31"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :最速  %>
+    <%= f.number_field :max, :size => 10 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :球威  %>
+    <%= f.select :powerful, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :制球  %>
+    <%= f.select :control, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :スタミナ  %>
+    <%= f.select :stamina, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :変化球  %>
+    <%= f.select :breaking, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ミート  %>
+    <%= f.select :meet, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パワー  %>
+    <%= f.select :power, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :走塁  %>
+    <%= f.select :running, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :守備  %>
+    <%= f.select :defence, 
+    [["1", "1"],
+    ["2", "2"],
+    ["3", "3"], 
+    ["4", "4"],
+    ["5", "5"], 
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"], 
+    ["9", "9"],
+    ["10", "10"],
+    ["11", "11"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :出身  %>
+    <%= f.select :prefecture, 
+    [["北海道", "北海道"], 
+    ["青森", "青森"], 
+    ["岩手", "岩手"], 
+    ["宮城", "宮城"],
+    ["秋田", "秋田"], 
+    ["山形", "山形"], 
+    ["福島", "福島"], 
+    ["茨城", "茨城"],
+    ["栃木", "栃木"], 
+    ["群馬", "群馬"], 
+    ["埼玉", "埼玉"], 
+    ["千葉", "千葉"],
+    ["東京", "東京"], 
+    ["神奈川", "神奈川"], 
+    ["山梨", "山梨"], 
+    ["新潟", "新潟"],
+    ["富山", "富山"], 
+    ["石川", "石川"], 
+    ["福井", "福井"], 
+    ["長野", "長野"],
+    ["岐阜", "岐阜"], 
+    ["静岡", "静岡"], 
+    ["愛知", "愛知"], 
+    ["三重", "三重"], 
+    ["滋賀", "滋賀"], 
+    ["京都", "京都"],
+    ["大阪", "大阪"], 
+    ["兵庫", "兵庫"], 
+    ["奈良", "奈良"], 
+    ["和歌山", "和歌山"], 
+    ["鳥取", "鳥取"], 
+    ["島根", "島根"],
+    ["岡山", "岡山"], 
+    ["広島", "広島"], 
+    ["山口", "山口"], 
+    ["徳島", "徳島"], 
+    ["香川", "香川"], 
+    ["愛媛", "愛媛"],
+    ["高知", "高知"], 
+    ["福岡", "福岡"], 
+    ["佐賀", "佐賀"], 
+    ["長崎", "長崎"], 
+    ["熊本", "熊本"], 
+    ["大分", "大分"],
+    ["宮崎", "宮崎"], 
+    ["鹿児島", "鹿児島"], 
+    ["沖縄", "沖縄"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :経歴  %>
+    <%= f.text_area :career, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :小見出し1  %>
+    <%= f.text_area :subtitle1, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :説明1  %>
+    <%= f.text_area :explanation, :size => "100x5" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :小見出し2  %>
+    <%= f.text_area :subtitle2, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :説明2  %>
+    <%= f.text_area :explanation2, :size => "100x5" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :小見出し3  %>
+    <%= f.text_area :subtitle3, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :説明3  %>
+    <%= f.text_area :explanation3, :size => "100x5" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :要約  %>
+    <%= f.text_area :summarytext, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :怪我歴  %>
+    <%= f.text_area :injury, :size => "30x2" %>
+  </div>
+
+  <%= f.label :タグ  %>
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :body) do |tag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= tag.check_box class: 'form-check-input' %>
+          <%= tag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.label :球種1  %>
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:vtag_ids, Vtag.all, :id, :variety) do |vtag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= vtag.check_box class: 'form-check-input' %>
+          <%= vtag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.label :球種2  %>
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:vltag_ids, Vltag.all, :id, :variety) do |vltag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= vltag.check_box class: 'form-check-input' %>
+          <%= vltag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:vlltag_ids, Vlltag.all, :id, :variety) do |vlltag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= vlltag.check_box class: 'form-check-input' %>
+          <%= vlltag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:vutag_ids, Vutag.all, :id, :variety) do |vutag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= vutag.check_box class: 'form-check-input' %>
+          <%= vutag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:vlrtag_ids, Vlrtag.all, :id, :variety) do |vlrtag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= vlrtag.check_box class: 'form-check-input' %>
+          <%= vlrtag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.collection_check_boxes(:vrtag_ids, Vrtag.all, :id, :variety) do |vrtag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= vrtag.check_box class: 'form-check-input' %>
+          <%= vrtag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :コピー %>
+    <%= f.text_field :copy, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :将来像 %>
+    <%= f.text_field :future, :size => 30 %>
+  </div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", players_path %>

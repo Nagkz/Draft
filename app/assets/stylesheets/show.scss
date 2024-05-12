@@ -1,0 +1,431 @@
+.show-player {
+    margin: 20px;
+}
+.s-show-categoryandcopy {
+    display: flex;
+}
+.s-player-categoryandposition {
+    display: flex;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+    .s-player-category {
+        font-size: 20px;
+        background-color: #008803;
+        border-radius: 5px;
+        color: #ffffff;
+        padding: 5px 10px;
+    }
+    .s-player-position {
+        display: flex;
+    }
+        /*メインポジション*/
+        .s-player-mtag {
+        font-size: 20px;
+        margin: 5px 8px;
+        }
+        /*サブポジション*/
+        .s-player-stag {
+        font-size: 16px;
+        margin: 4px 1px 4px 0px;
+        padding: 4px 7px;
+        border-left: #686868 2px solid;
+        }
+    /*コピー*/
+    .s-player-copy {
+        font-size: 20px;
+        color: #008803;
+        font-weight: bold;
+        margin: 5px 20px;
+    }
+
+.s-player-nameandbelong {
+    margin-top: 10px;
+    display: flex;
+}
+    .s-player-furiganaandname {
+        justify-content: flex-start; /* 左寄せ */
+        flex-direction: column; /* 垂直方向に要素を配置 */
+        align-items: center; /* 水平方向の中央揃え */
+    }
+        .s-player-furigana {
+            font-size: 12px;
+            height: 12px;
+        }
+        .s-player-name {
+            font-size: 30px;
+            height: 33px;
+            font-weight: bold;
+            text-align: left; /* name を左寄せ */
+        }
+        
+    .s-player-belongandleague {
+        background-color: #000000;
+        border-radius: 5px;
+        color: #ffffff;
+        padding: 5px 10px;
+        margin-left: 20px;
+        height: 45px;
+    }
+        .s-player-belong {
+            font-size: 20px;
+            height: 28px;
+            text-align: center;
+        }
+        .s-player-league {
+            font-size: 10px;
+            text-align: center;
+        }
+
+/*いいねボタン*/
+.like button {
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+  }
+  .like .unselected .fa-heart {
+    color: #686868; /* 未選択時のアイコンの色 */
+    font-size: 35px; /* ハートマークのサイズを変更する */
+  }
+  .like .selected .fa-heart {
+    color: #008803; /* 選択時のアイコンの色 */
+    font-size: 35px; /* ハートマークのサイズを変更する */
+  }
+
+/*基本情報*/
+.s-player-basic {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+}
+.s-player-basic-a {
+    display: flex;
+}
+    /*投打*/
+    .s-player-thwowsandbats-box {
+        display: flex;
+        height: 24px;
+    }
+        .s-player-thwowsandbats-box label {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin: 2.5px 0px;
+            padding-right: 3px;
+            color: #4b4b4b;
+        }
+        .s-player-thwowsandbats {
+            padding-left: 3px;
+            border-left: #4b4b4b solid 2px;
+        }
+    
+    /*身長体重*/
+    .s-player-heightandweight-box {
+        margin-left: 20px;
+        display: flex;
+        height: 24px;
+    }
+        .s-player-heightandweight-box label {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin: 2.5px 0px;
+            padding-right: 3px;
+            color: #4b4b4b;
+        }
+        .s-player-heightandweight {
+            padding-left: 3px;
+            border-left: #4b4b4b solid 2px;
+        }
+
+    /*出身*/
+    .s-player-prefecture-box {
+        margin-left: 20px;
+        display: flex;
+        height: 24px;
+    }
+        .s-player-prefecture-box label {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin: 2.5px 0px;
+            padding-right: 3px;
+            color: #4b4b4b;
+        }
+        .s-player-prefecture {
+            padding-left: 3px;
+            border-left: #4b4b4b solid 2px;
+        }
+
+    /*経歴*/
+    .s-player-career-box {
+        margin-left: 20px;
+        display: flex;
+        height: 24px;
+    }
+        .s-player-career-box label {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin: 2.5px 0px;
+            padding-right: 3px;
+            color: #4b4b4b;
+        }
+        .s-player-career {
+            padding-left: 3px;
+            border-left: #4b4b4b solid 2px;
+        }
+
+    /*誕生日*/
+    .s-player-birthday-box {
+        margin-left: 20px;
+        display: flex;
+        height: 24px;
+    }
+        .s-player-birthday-box label {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin: 2.5px 0px;
+            padding-right: 3px;
+            color: #4b4b4b;
+        }
+        .s-player-birthday {
+            padding-left: 3px;
+            border-left: #4b4b4b solid 2px;
+        }
+
+    /*将来像*/
+    .s-player-future-box {
+        margin-top: 5px;
+        display: flex;
+        height: 24px;
+    }
+        .s-player-future-box label {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin: 2.5px 0px;
+            padding-right: 3px;
+            color: #4b4b4b;
+        }
+        .s-player-future {
+            padding-left: 3px;
+            border-left: #4b4b4b solid 2px;
+        }
+    
+    .s-players-graphic {
+        display: flex;
+        margin-top: 10px;
+    }
+        /*パラメータ*/
+        .s-players-parameter {
+            display: flex;
+            justify-content: space-between;
+            width: 320px;
+            padding: 10px 10px 5px 10px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+            .s-player-parameter-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 5px; /* グラフごとの間隔 */
+            }
+            .s-player-parameter-box {
+                display: flex;
+                align-items: center;
+            }
+            .s-player-parameter-label {
+                font-size: 14px;
+                color: #4b4b4b;
+                font-weight: bold;
+                border-right: #4b4b4b 2px solid;
+                padding-right: 5px;
+                margin-right: 5px; /* ラベルとグラフの間隔 */
+                text-align: right; /* ラベルを右揃えにする */
+                width: 57px; /* ラベルの固定幅 */
+            }
+            .s-player-parameter-bar {
+                flex-grow: 1;
+                height: 20px;
+                background-color: #008803;
+                transition: width 0.3s ease;
+            }
+            .s-player-parameter-value {
+                font-size: 16px;
+                color: #008803;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+
+        /*球種*/
+        .s-player-vtag {
+            position: relative;
+            margin-left: 10px;
+            background-color: #f0f0f0;
+            border-radius : 5px; /* 角丸にする */
+            padding       : 10px; /* 内側の余白 */
+            width: 280px;
+            height: 111px;
+        }
+            /*球種左方向タグ*/
+            .s-vltag{
+                position: absolute;
+            }
+            /*球種左下方向タグ*/
+            .s-vlltag{
+                position: absolute;
+                top: 55px;
+                left: 65px;
+            }
+            /*球種下方向タグ*/
+            .s-vutag{
+                position: absolute;
+                top: 75px;
+                left: 110px;
+            }
+            /*球種右下方向タグ*/
+            .s-vlrtag{
+                position: absolute;
+                top: 55px;
+                right: 55px;
+            }
+            /*球種右方向タグ*/
+            .s-vrtag{
+                position: absolute;
+                right: 20px;
+            }
+                /*球種タグ図形*/
+                .s-vtag-figure {
+                    position: relative;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    margin: 0 auto;
+                }
+                /*球種タグ図形ボール*/
+                .s-vtag-ball {
+                position: absolute;
+                top: 25px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;/*幅*/
+                height: 20px;/*高さ*/
+                border-radius: 50%;/*角丸*/
+                border: 2px solid #686868;
+                background-color: #FFFFFF;
+                }
+                /*球種タグ図形左矢印*/
+                .s-vtag-left {
+                position: absolute;
+                top: 18px;
+                display: inline-block;
+                vertical-align: middle;
+                color: #686868;
+                line-height: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0.375em 0.64952em;
+                border-right-color: currentColor;
+                border-left: 0;
+                }
+                /*球種タグ図形左下矢印*/
+                .s-vtag-lowerleft {
+                position: absolute;
+                top: 36px;
+                left: 7px;
+                display: inline-block;
+                vertical-align: middle;
+                color: #686868;
+                line-height: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0.375em 0.64952em;
+                border-right-color: currentColor;
+                border-left: 0;
+                transform: rotate( -45deg );
+                }
+                /*球種タグ図形下矢印*/
+                .s-vtag-under {
+                position: absolute;
+                margin: 0 auto;
+                top: 44px;
+                left: 24px;
+                display: inline-block;
+                vertical-align: middle;
+                color: #686868;
+                line-height: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0.64952em 0.375em;
+                border-top-color: currentColor;
+                border-bottom: 0;
+                }
+                /*球種タグ図形右下矢印*/
+                .s-vtag-lowerright {
+                position: absolute;
+                top: 36px;
+                right: 7px;
+                display: inline-block;
+                vertical-align: middle;
+                color: #686868;
+                line-height: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0.64952em 0.375em;
+                border-top-color: currentColor;
+                border-bottom: 0;
+                transform: rotate( -45deg );
+                }
+                /*球種タグ図形右矢印*/
+                .s-vtag-right {
+                position: absolute;
+                top: 18px;
+                right: 0px;
+                display: inline-block;
+                vertical-align: middle;
+                color: #686868;
+                line-height: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0.375em 0.64952em;
+                border-left-color: currentColor;
+                border-right: 0;
+                }
+
+    .s-player-tag {
+        margin-top: 5px;
+        font-size: 16px;
+        color: #4B4B4B;
+    }
+
+/*文章*/
+.s-player-sentence {
+
+}
+    /*見出し*/
+    .s-player-subtitle {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    /*日時*/      
+    .s-player-time {
+        display: flex;
+        margin-left: auto;
+        font-size: 16px;
+        color: #4B4B4B
+      }

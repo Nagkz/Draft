@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Draft</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1>draft</h1>
+      <div class="header-list">
+        <ul>
+            <li><%= link_to "ホーム", players_path %></li>
+            <li><%= link_to "トップ", statics_top_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "お問い合わせ", new_request_path %></li>
+            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <button id="scroll-to-top-btn">≫</button>
+
+    <script>
+    const scroll_to_top_btn = document.querySelector("#scroll-to-top-btn");
+      //クリックイベントを追加
+      scroll_to_top_btn.addEventListener("click", scroll_to_top);
+      function scroll_to_top() {
+        window.scroll({ top: 0, behavior: "smooth" });
+      }
+      //スクロール時のイベントを追加
+      window.addEventListener("scroll", scroll_event);
+      function scroll_event() {
+        if (window.pageYOffset > 400) {
+          scroll_to_top_btn.style.opacity = "1";
+        } else if (window.pageYOffset < 400) {
+          scroll_to_top_btn.style.opacity = "0";
+        }
+    }
+    </script>
+
+    <footer>
+      <p>Copyright © Draft Kanzen Koryaku All Rights Reserved.</p>
+      <li><%= link_to "新規投稿", new_player_path %></li>
+    </footer>
+  </body>
+</html>

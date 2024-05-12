@@ -1,0 +1,11 @@
+<% @requests.each do |request| %>
+    <%= request.purpose %>
+    <%= request.body %>
+    <% if request.user.present? %>
+      送信者: <%= request.user.email %> (name: <%= request.user.name %> ID: <%= request.user.id %>)
+    <% else %>
+      送信者: 不明
+    <% end %>
+
+    <%= button_to "削除する", request_path(request.id), method: :delete %>  #追記
+<% end %>

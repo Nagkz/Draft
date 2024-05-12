@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  furigana: MyString
+  belong: MyString
+  throws: MyString
+  bats: MyString
+  height: 1
+  weight: 1
+  birthday: 2024-03-18
+  prefecture: MyString
+  career: MyText
+  explanation: MyText
+  injury: MyText
+  max: 1
+  powerful: 1
+  control: 1
+  stamina: 1
+  breaking: 1
+  meet: 1
+  power: 1
+  running: 1
+  defence: 1
+
+two:
+  name: MyString
+  furigana: MyString
+  belong: MyString
+  throws: MyString
+  bats: MyString
+  height: 1
+  weight: 1
+  birthday: 2024-03-18
+  prefecture: MyString
+  career: MyText
+  explanation: MyText
+  injury: MyText
+  max: 1
+  powerful: 1
+  control: 1
+  stamina: 1
+  breaking: 1
+  meet: 1
+  power: 1
+  running: 1
+  defence: 1

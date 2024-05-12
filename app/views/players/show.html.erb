@@ -1,0 +1,466 @@
+<%= stylesheet_link_tag 'show', :media => "all" %>
+
+<h3>選手詳細</h3>
+
+<div class="show-player">
+  <div class="s-show-categoryandcopy">
+    <div class="s-player-categoryandposition">
+      <div class="s-player-category">
+        <%= @player.category %>
+      </div>
+
+      <div class="s-player-position">
+        <div class="s-player-mtag">
+          <% @player.mptags.each do |mptag| %>
+            <span><%= mptag.main_p_position %></span>
+          <% end %>
+
+          <% @player.mfctags.each do |mfctag| %>
+            <span><%= mfctag.main_fc_position %></span>
+          <% end %>
+
+          <% @player.mfitags.each do |mfitag| %>
+            <span><%= mfitag.main_fi_position %></span>
+          <% end %>
+
+          <% @player.mfotags.each do |mfotag| %>
+            <span><%= mfotag.main_fo_position %></span>
+          <% end %>
+        </div>
+
+        <div class="s-player-stag">
+          <% @player.sptags.each do |sptag| %>
+            <span><%= sptag.sub_p_position %></span>
+          <% end %>
+
+          <% @player.sfctags.each do |sfctag| %>
+            <span><%= sfctag.sub_fc_position %></span>
+          <% end %>
+
+          <% @player.sfitags.each do |sfitag| %>
+            <span><%= sfitag.sub_fi_position %></span>
+          <% end %>
+
+          <% @player.sfotags.each do |sfotag| %>
+            <span><%= sfotag.sub_fo_position %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-player-copy">
+      <%= @player.copy %>
+    </div>
+  </div>
+  
+  <div class="s-player-nameandbelong">
+    <div class="s-player-furiganaandname">
+      <div class="s-player-furigana">
+        <%= @player.furigana %>
+      </div>
+
+      <div class="s-player-name">
+        <%= @player.name %>
+      </div>
+    </div>
+  
+    <div class="s-player-belongandleague">
+      <div class="s-player-belong">
+        <%= @player.belong %>
+      </div>
+
+      <div class="s-player-league">
+        (<%= @player.league %>)
+      </div>
+    </div>
+  </div>
+  
+  <div class="like">
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(@player) %>
+        <%= button_to player_like_path(id: @player.id, player_id: @player.id), method: :delete, class: 'selected' do %>
+          <i class="fas fa-heart"></i><%= @player.likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to player_likes_path(id: @player.id, player_id: @player.id), method: :post, class: 'unselected' do %>
+          <i class="far fa-heart"></i><%= @player.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = <%= @player.likes.count %></p>
+    <% end %>
+  </div>
+
+  <div class="s-player-detail">
+    <div class="s-player-basic">
+      <div class="s-player-basic-a">
+        <div class="s-player-thwowsandbats-box">
+          <label>投/打</label>
+          <div class="s-player-thwowsandbats">
+            <%= @player.throws %>/<%= @player.bats %>
+          </div>
+        </div>
+
+        <div class="s-player-heightandweight-box">
+          <label>身長/体重</label>
+          <div class="s-player-heightandweight">
+            <%= @player.height %>cm/<%= @player.weight %>kg
+          </div>
+        </div>
+
+        <div class="s-player-prefecture-box">
+          <label>出身</label>
+          <div class="s-player-prefecture">
+            <%= @player.prefecture %>
+          </div>
+        </div>
+
+        <div class="s-player-career-box">
+          <label>経歴</label>
+          <div class="s-player-career">
+            <%= @player.career %>
+          </div>
+        </div>
+
+        <div class="s-player-birthday-box">
+          <label>生年月日</label>
+          <div class="s-player-birthday">
+            <%= @player.cyear %>年<%= @player.month %>月<%= @player.date %>日
+          </div>
+        </div>
+      </div>
+
+      <div class="s-player-future-box">
+        <label>将来像</label>
+        <div class="s-player-future">
+          <%= @player.future %>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-players-graphic">
+      <div class="s-players-parameter">
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Player Parameters</title>
+        </head>
+
+        <body>
+        <div id="s-players-parameter-pitcher">
+            <div class="s-players-parameter-pitcher">
+              <% if @player.powerful.present? || @player.control.present? || @player.stamina.present? || @player.breaking.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">球威</label>
+                        <div class="s-player-parameter-bar s-player-powerful-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.powerful %></div>
+                    </div>
+                </div>
+              <% end %>
+
+              <% if @player.powerful.present? || @player.control.present? || @player.stamina.present? || @player.breaking.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">制球</label>
+                        <div class="s-player-parameter-bar s-player-control-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.control %></div>
+                    </div>
+                </div>
+              <% end %>
+
+              <% if @player.powerful.present? || @player.control.present? || @player.stamina.present? || @player.breaking.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">スタミナ</label>
+                        <div class="s-player-parameter-bar s-player-stamina-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.stamina %></div>
+                    </div>
+                </div>
+              <% end %>
+
+              <% if @player.powerful.present? || @player.control.present? || @player.stamina.present? || @player.breaking.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">変化球</label>
+                        <div class="s-player-parameter-bar s-player-breaking-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.breaking %></div>
+                    </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+
+        <script>
+            // 各要素をチェックして非表示にする
+            // ピッチャー用のグラフを表示する
+            const powerfulValue = <%= @player.powerful %>;
+            const controlValue = <%= @player.control %>;
+            const staminaValue = <%= @player.stamina %>;
+            const breakingValue = <%= @player.breaking %>;
+
+            if (powerfulValue || controlValue || staminaValue || breakingValue) {
+                document.querySelector('.s-player-powerful-bar').style.width = `${powerfulValue * 20}px`;
+                document.querySelector('.s-player-control-bar').style.width = `${controlValue * 20}px`;
+                document.querySelector('.s-player-stamina-bar').style.width = `${staminaValue * 20}px`;
+                document.querySelector('.s-player-breaking-bar').style.width = `${breakingValue * 20}px`;
+            } else {
+                document.getElementById('s-players-parameter-pitcher').style.display = 'none';
+            }
+        </script>
+
+        <div id="s-players-parameter-fielder">
+            <div class="s-players-parameter-fielder">
+              <% if @player.meet.present? || @player.power.present? || @player.running.present? || @player.defence.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">ミート</label>
+                        <div class="s-player-parameter-bar s-player-meet-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.meet %></div>
+                    </div>
+                </div>
+              <% end %>
+
+              <% if @player.meet.present? || @player.power.present? || @player.running.present? || @player.defence.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">パワー</label>
+                        <div class="s-player-parameter-bar s-player-power-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.power %></div>
+                    </div>
+                </div>
+              <% end %>
+
+              <% if @player.meet.present? || @player.power.present? || @player.running.present? || @player.defence.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">走塁</label>
+                        <div class="s-player-parameter-bar s-player-running-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.running %></div>
+                    </div>
+                </div>
+              <% end %>
+
+              <% if @player.meet.present? || @player.power.present? || @player.running.present? || @player.defence.present? %>
+                <div class="s-player-parameter-content">
+                    <div class="s-player-parameter-box">
+                        <label class="s-player-parameter-label">守備</label>
+                        <div class="s-player-parameter-bar s-player-defence-bar"></div>
+                        <div class="s-player-parameter-value"><%= @player.defence %></div>
+                    </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+
+        <script>
+            // フィールダー用のグラフを表示する
+            const meetValue = <%= @player.meet %>;
+            const powerValue = <%= @player.power %>;
+            const runningValue = <%= @player.running %>;
+            const defenceValue = <%= @player.defence %>;
+
+            if (meetValue || powerValue || runningValue || defenceValue) {
+                document.querySelector('.s-player-meet-bar').style.width = `${meetValue * 20}px`;
+                document.querySelector('.s-player-power-bar').style.width = `${powerValue * 20}px`;
+                document.querySelector('.s-player-running-bar').style.width = `${runningValue * 20}px`;
+                document.querySelector('.s-player-defence-bar').style.width = `${defenceValue * 20}px`;
+            } else {
+                document.getElementById('s-players-parameter-fielder').style.display = 'none';
+            }
+        </script>
+      </div>
+
+
+    <div class="s-player-vtag">
+      <div class="s-vltag">
+        <% @player.vltags.each do |vltag| %>
+          <li><%= vltag.variety %></li>
+        <% end %>
+      </div>
+
+      <div class="s-vlltag">
+        <% @player.vlltags.each do |vlltag| %>
+          <li><%= vlltag.variety %></li>
+        <% end %>
+      </div>
+
+      <div class="s-vutag">
+        <% @player.vutags.each do |vutag| %>
+          <li><%= vutag.variety %></li>
+        <% end %>
+      </div>
+
+      <div class="s-vlrtag">
+        <% @player.vlrtags.each do |vlrtag| %>
+          <li><%= vlrtag.variety %></li>
+        <% end %>
+      </div>
+
+      <div class="s-vrtag">
+        <% @player.vrtags.each do |vrtag| %>
+          <li><%= vrtag.variety %></li>
+        <% end %>
+      </div>
+
+      <div class="s-vtag-figure">
+        <div class="s-vtag-ball"></div>
+        <% unless @player.vltags.empty? %><div class="s-vtag-left"></div><% end %>
+        <% unless @player.vlltags.empty? %><div class="s-vtag-lowerleft"></div><% end %>
+        <% unless @player.vutags.empty? %><div class="s-vtag-under"></div><% end %>
+        <% unless @player.vlrtags.empty? %><div class="s-vtag-lowerright"></div><% end %>
+        <% unless @player.vrtags.empty? %><div class="s-vtag-right"></div><% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="s-player-tag">
+    <% @player.tags.each do |tag| %>
+      #<%= tag.body %>
+    <% end %>
+  </div>
+
+  
+
+  <% @player.etags.each do |etag| %>
+    <span><%= etag.expectation %></span>
+  <% end %>
+
+  <div class="s-player-max">
+    <%= @player.max %>km/h
+  </div>
+
+  <% @player.otags.each do |otag| %>
+    <span><%= otag.original %></span>
+  <% end %>
+
+  <div class="s-player-time">
+    <%= @player.created_at.strftime('%-m月%-d日') %>投稿
+    <%= @player.updated_at.strftime('%-m月%-d日') %>編集
+  </div>
+
+  <div class="s-player-sentence">
+    <div class="s-player-sentence1">
+      <div class="s-player-subtitle">
+        <%= @player.subtitle1 %>
+      </div>
+
+      <div class="s-player-explanation1">
+        <%= @player.explanation %>
+      </div>
+    </div>
+
+    <div class="s-player-sentence2">
+      <div class="s-player-subtitle">
+        <%= @player.subtitle2 %>
+      </div>
+      <div class="s-player-explanation2">
+        <%= @player.explanation2 %>
+      </div>
+    </div>
+
+    <div class="s-player-sentence3">
+      <div class="s-player-subtitle">
+        <%= @player.subtitle3 %>
+      </div>
+
+      <div class="s-player-explanation3">
+        <%= @player.explanation3 %>
+      </div>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@player) %>
+        <%= button_to player_like_path(@player), method: :delete do %>
+          <p>いいねを取り消す</p><%= @player.likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to player_likes_path(@player), method: :post do %>
+          <p>いいね</p><%= @player.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= @player.likes.count %>
+    <% end %>
+  
+  <%= link_to "編集する", edit_player_path(@player.id) %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @player.liked_users.each do |user| %>
+  <li><%= user.name %></li>
+<% end %>
+
+<div class="rank-wrapper">
+  <p>順位予想一覧</p>
+  <% @ranks.each do |r| %>
+    <div>
+      <%= r.user.name unless r.user.blank? %>
+      <%= r.body %>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@player, @rank], local: true) do |r| %>
+      <%= r.label :順位  %>
+      <%= r.select :body, 
+      [["1位", "1位"], 
+      ["2位", "2位"], 
+      ["3位", "3位"], 
+      ["4位", "4位"],
+      ["5位", "5位"], 
+      ["6位", "6位"], 
+      ["7位~", "7位~"],
+      ["育成", "育成"], 
+      ["漏れ", "漏れ"]], include_blank: "選択して下さい" %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> 予想する
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.name unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+      <%= c.created_at %>
+      <%= c.updated_at %>
+
+      <% if user_signed_in? && current_user.id == c.user_id %>
+        <%= button_to "削除する", player_comment_path(c.id), method: :delete %>
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+      <% if current_user.already_favorited?(c) %>
+        <%= button_to comment_favorite_path(c, comment_id: c.id), method: :delete do %>
+          <p>いいねを取り消す</p><%= c.favorites.count %>
+        <% end %>
+      <% else %>
+        <%= button_to comment_favorites_path(c, comment_id: c.id), method: :post do %>
+          <p>いいね</p><%= c.favorites.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+          <p>いいねの数 = </p><%= c.favorites.count %>
+    <% end %>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@player, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "選手一覧に戻る", players_path %>
