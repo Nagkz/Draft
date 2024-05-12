@@ -750,7 +750,7 @@
                   <% if user_signed_in? %>
                     <% if current_user.already_liked?(t) %>
                       <%= button_to player_like_path(id: t.id, player_id: t.id), method: :delete, class: 'selected' do %>
-                        <i class="fas fa-heart"></i><%= t.likes.count %>
+                        <i class="far fa-heart"></i><%= t.likes.count %>
                       <% end %>
                     <% else %>
                       <%= button_to player_likes_path(id: t.id, player_id: t.id), method: :post, class: 'unselected' do %>
