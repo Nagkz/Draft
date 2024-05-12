@@ -14,9 +14,9 @@
  *= require_self
  */
 
- @import 'font-awesome-sprockets';
+ /* @import 'font-awesome-sprockets';
  @import 'font-awesome';
- @import "@fortawesome/fontawesome-free/scss/fontawesome";
+ @import "@fortawesome/fontawesome-free/scss/fontawesome"; */
 
  * {
   padding: 0;
