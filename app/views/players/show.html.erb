@@ -3,7 +3,7 @@
 <h3>選手詳細</h3>
 
 <div class="show-player">
-  <div class="s-show-categoryandcopy">
+  <div class="s-show-categoryandtime">
     <div class="s-player-categoryandposition">
       <div class="s-player-category">
         <%= @player.category %>
@@ -48,47 +48,62 @@
       </div>
     </div>
 
+    <div class="s-player-expectation">
+      <% @player.etags.each do |etag| %>
+        <span><%= etag.expectation %></span>
+      <% end %>
+    </div>
+    
+    <div class="s-player-time">
+      <%= @player.created_at.strftime('%-m月%-d日') %>投稿
+      <%= @player.updated_at.strftime('%-m月%-d日') %>編集
+    </div>
+
+  </div>
+  
+  <div class="s-player-nameandcopy">
+    <div class="s-player-nameandbelong">
+      <div class="s-player-furiganaandname">
+        <div class="s-player-furigana">
+          <%= @player.furigana %>
+        </div>
+
+        <div class="s-player-name">
+          <%= @player.name %>
+        </div>
+      </div>
+    
+      <div class="s-player-belongandleague">
+        <div class="s-player-belong">
+          <%= @player.belong %>
+        </div>
+
+        <div class="s-player-league">
+          (<%= @player.league %>)
+        </div>
+      </div>
+    </div>
+
     <div class="s-player-copy">
       <%= @player.copy %>
     </div>
-  </div>
-  
-  <div class="s-player-nameandbelong">
-    <div class="s-player-furiganaandname">
-      <div class="s-player-furigana">
-        <%= @player.furigana %>
-      </div>
 
-      <div class="s-player-name">
-        <%= @player.name %>
-      </div>
-    </div>
-  
-    <div class="s-player-belongandleague">
-      <div class="s-player-belong">
-        <%= @player.belong %>
-      </div>
-
-      <div class="s-player-league">
-        (<%= @player.league %>)
-      </div>
-    </div>
-  </div>
-  
-  <div class="like">
-    <% if user_signed_in? %>
-      <% if current_user.already_liked?(@player) %>
-        <%= button_to player_like_path(id: @player.id, player_id: @player.id), method: :delete, class: 'selected' do %>
-          <i class="fas fa-heart"></i><%= @player.likes.count %>
+    <div class="like">
+      <div class="like-label">いいね</div>
+      <% if user_signed_in? %>
+        <% if current_user.already_liked?(@player) %>
+          <%= button_to player_like_path(id: @player.id, player_id: @player.id), method: :delete, class: 'selected' do %>
+            <i class="fas fa-heart"></i><%= @player.likes.count %>
+          <% end %>
+        <% else %>
+          <%= button_to player_likes_path(id: @player.id, player_id: @player.id), method: :post, class: 'unselected' do %>
+            <i class="far fa-heart"></i><%= @player.likes.count %>
+          <% end %>
         <% end %>
       <% else %>
-        <%= button_to player_likes_path(id: @player.id, player_id: @player.id), method: :post, class: 'unselected' do %>
-          <i class="far fa-heart"></i><%= @player.likes.count %>
-        <% end %>
+        <p>いいねの数 = <%= @player.likes.count %></p>
       <% end %>
-    <% else %>
-      <p>いいねの数 = <%= @player.likes.count %></p>
-    <% end %>
+    </div>
   </div>
 
   <div class="s-player-detail">
@@ -273,7 +288,13 @@
       </div>
 
 
+    
     <div class="s-player-vtag">
+      <div class="s-player-max">
+        <span class="max-speed"><%= @player.max %></span>
+        <span class="kmh">km/h</span>
+      </div>
+
       <div class="s-vltag">
         <% @player.vltags.each do |vltag| %>
           <li><%= vltag.variety %></li>
@@ -321,25 +342,6 @@
     <% end %>
   </div>
 
-  
-
-  <% @player.etags.each do |etag| %>
-    <span><%= etag.expectation %></span>
-  <% end %>
-
-  <div class="s-player-max">
-    <%= @player.max %>km/h
-  </div>
-
-  <% @player.otags.each do |otag| %>
-    <span><%= otag.original %></span>
-  <% end %>
-
-  <div class="s-player-time">
-    <%= @player.created_at.strftime('%-m月%-d日') %>投稿
-    <%= @player.updated_at.strftime('%-m月%-d日') %>編集
-  </div>
-
   <div class="s-player-sentence">
     <div class="s-player-sentence1">
       <div class="s-player-subtitle">
@@ -370,20 +372,6 @@
       </div>
     </div>
   </div>
-
-  <% if user_signed_in? %>
-      <% if current_user.already_liked?(@player) %>
-        <%= button_to player_like_path(@player), method: :delete do %>
-          <p>いいねを取り消す</p><%= @player.likes.count %>
-        <% end %>
-      <% else %>
-        <%= button_to player_likes_path(@player), method: :post do %>
-          <p>いいね</p><%= @player.likes.count %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <p>いいねの数 = </p><%= @player.likes.count %>
-    <% end %>
   
   <%= link_to "編集する", edit_player_path(@player.id) %>
 </div>

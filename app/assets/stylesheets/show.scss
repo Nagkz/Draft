@@ -1,219 +1,262 @@
 .show-player {
     margin: 20px;
 }
-.s-show-categoryandcopy {
+.s-show-categoryandtime {
     display: flex;
 }
-.s-player-categoryandposition {
-    display: flex;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-}
-    .s-player-category {
-        font-size: 20px;
-        background-color: #008803;
-        border-radius: 5px;
-        color: #ffffff;
-        padding: 5px 10px;
-    }
-    .s-player-position {
+    .s-player-categoryandposition {
         display: flex;
+        background-color: #f0f0f0;
+        border-radius: 5px;
     }
-        /*メインポジション*/
-        .s-player-mtag {
-        font-size: 20px;
-        margin: 5px 8px;
+        /*カテゴリー*/
+        .s-player-category {
+            font-size: 20px;
+            background-color: #008803;
+            border-radius: 5px;
+            color: #ffffff;
+            padding: 5px 10px;
         }
-        /*サブポジション*/
-        .s-player-stag {
-        font-size: 16px;
-        margin: 4px 1px 4px 0px;
-        padding: 4px 7px;
-        border-left: #686868 2px solid;
+        .s-player-position {
+            display: flex;
         }
-    /*コピー*/
-    .s-player-copy {
-        font-size: 20px;
-        color: #008803;
-        font-weight: bold;
-        margin: 5px 20px;
-    }
-
-.s-player-nameandbelong {
-    margin-top: 10px;
-    display: flex;
-}
-    .s-player-furiganaandname {
-        justify-content: flex-start; /* 左寄せ */
-        flex-direction: column; /* 垂直方向に要素を配置 */
-        align-items: center; /* 水平方向の中央揃え */
-    }
-        .s-player-furigana {
-            font-size: 12px;
-            height: 12px;
-        }
-        .s-player-name {
-            font-size: 30px;
-            height: 33px;
-            font-weight: bold;
-            text-align: left; /* name を左寄せ */
+            /*メインポジション*/
+            .s-player-mtag {
+            font-size: 20px;
+            margin: 5px 8px;
+            }
+            /*サブポジション*/
+            .s-player-stag {
+            font-size: 16px;
+            margin: 4px 1px 4px 0px;
+            padding: 4px 7px;
+            border-left: #686868 2px solid;
+            }
+        
+        .s-player-expectation {
+            margin-left: 10px;
+            padding: 6px 0px;
+            background-color: #000000;
+            border-radius: 5px;
+            height: 28px;
+            width: 40px;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 18px;
         }
         
-    .s-player-belongandleague {
-        background-color: #000000;
-        border-radius: 5px;
-        color: #ffffff;
-        padding: 5px 10px;
-        margin-left: 20px;
-        height: 45px;
-    }
-        .s-player-belong {
-            font-size: 20px;
-            height: 28px;
-            text-align: center;
-        }
-        .s-player-league {
-            font-size: 10px;
-            text-align: center;
+        /*日時*/      
+        .s-player-time {
+            display: flex;
+            margin-left: auto;
+            font-size: 16px;
+            color: #4B4B4B
         }
 
-/*いいねボタン*/
-.like button {
-    margin-right: 10px;
-    border: none;
-    background-color: transparent;
-  }
-  .like .unselected .fa-heart {
-    color: #686868; /* 未選択時のアイコンの色 */
-    font-size: 35px; /* ハートマークのサイズを変更する */
-  }
-  .like .selected .fa-heart {
-    color: #008803; /* 選択時のアイコンの色 */
-    font-size: 35px; /* ハートマークのサイズを変更する */
-  }
+.s-player-nameandcopy {
+    display: flex;
+    margin-top: 10px;
+}
+    .s-player-nameandbelong {
+        display: flex;
+    }
+        .s-player-furiganaandname {
+            justify-content: flex-start; /* 左寄せ */
+            flex-direction: column; /* 垂直方向に要素を配置 */
+            align-items: center; /* 水平方向の中央揃え */
+        }
+            /*ふりがな*/
+            .s-player-furigana {
+                font-size: 12px;
+                height: 12px;
+            }
+            /*氏名*/
+            .s-player-name {
+                font-size: 30px;
+                height: 33px;
+                font-weight: bold;
+                text-align: left; /* name を左寄せ */
+            }
+            
+        .s-player-belongandleague {
+            background-color: #000000;
+            border-radius: 5px;
+            color: #ffffff;
+            padding: 5px 10px;
+            margin-left: 20px;
+            height: 45px;
+        }
+            /*所属*/
+            .s-player-belong {
+                font-size: 20px;
+                height: 28px;
+                text-align: center;
+            }
+            /*リーグ*/
+            .s-player-league {
+                font-size: 10px;
+                text-align: center;
+            }
+                /*コピー*/
+                .s-player-copy {
+                    font-size: 22px;
+                    color: #008803;
+                    font-weight: bold;
+                    margin: 10px;
+                    height: 35px;
+                }
+
+                /*いいねボタン*/
+                .like {
+                    margin-left: auto;
+                    width: 55px;
+                    height: 55px;
+                }
+                    .like-label {
+                        margin-top: 3px;
+                        font-size: 10px;
+                        font-weight: bold;
+                        color: #4B4B4B;
+                        margin-left: 2px;
+                        line-height: 10px;
+                    }
+                    .like button {
+                        border: none;
+                        background-color: transparent;
+                    }
+                        .like .unselected .fa-heart {
+                            color: #686868; /* 未選択時のアイコンの色 */
+                            font-size: 35px; /* ハートマークのサイズを変更する */
+                        }
+                        .like .selected .fa-heart {
+                            color: #008803; /* 選択時のアイコンの色 */
+                            font-size: 35px; /* ハートマークのサイズを変更する */
+                        }
 
 /*基本情報*/
 .s-player-basic {
     background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
+    margin-top: 10px;
 }
-.s-player-basic-a {
-    display: flex;
-}
-    /*投打*/
-    .s-player-thwowsandbats-box {
+    .s-player-basic-a {
         display: flex;
-        height: 24px;
     }
-        .s-player-thwowsandbats-box label {
-            font-size: 12px;
-            font-weight: bold;
+        /*投打*/
+        .s-player-thwowsandbats-box {
+            display: flex;
+            height: 24px;
+        }
+            .s-player-thwowsandbats-box label {
+                font-size: 12px;
+                font-weight: bold;
 
-            margin: 2.5px 0px;
-            padding-right: 3px;
-            color: #4b4b4b;
+                margin: 2.5px 0px;
+                padding-right: 3px;
+                color: #4b4b4b;
+            }
+            .s-player-thwowsandbats {
+                padding-left: 3px;
+                border-left: #4b4b4b solid 2px;
+            }
+        
+        /*身長体重*/
+        .s-player-heightandweight-box {
+            margin-left: 20px;
+            display: flex;
+            height: 24px;
         }
-        .s-player-thwowsandbats {
-            padding-left: 3px;
-            border-left: #4b4b4b solid 2px;
+            .s-player-heightandweight-box label {
+                font-size: 12px;
+                font-weight: bold;
+
+                margin: 2.5px 0px;
+                padding-right: 3px;
+                color: #4b4b4b;
+            }
+            .s-player-heightandweight {
+                padding-left: 3px;
+                border-left: #4b4b4b solid 2px;
+            }
+
+        /*出身*/
+        .s-player-prefecture-box {
+            margin-left: 20px;
+            display: flex;
+            height: 24px;
         }
+            .s-player-prefecture-box label {
+                font-size: 12px;
+                font-weight: bold;
+
+                margin: 2.5px 0px;
+                padding-right: 3px;
+                color: #4b4b4b;
+            }
+            .s-player-prefecture {
+                padding-left: 3px;
+                border-left: #4b4b4b solid 2px;
+            }
+
+        /*経歴*/
+        .s-player-career-box {
+            margin-left: 20px;
+            display: flex;
+            height: 24px;
+        }
+            .s-player-career-box label {
+                font-size: 12px;
+                font-weight: bold;
+
+                margin: 2.5px 0px;
+                padding-right: 3px;
+                color: #4b4b4b;
+            }
+            .s-player-career {
+                padding-left: 3px;
+                border-left: #4b4b4b solid 2px;
+            }
+
+        /*誕生日*/
+        .s-player-birthday-box {
+            margin-left: 20px;
+            display: flex;
+            height: 24px;
+        }
+            .s-player-birthday-box label {
+                font-size: 12px;
+                font-weight: bold;
+
+                margin: 2.5px 0px;
+                padding-right: 3px;
+                color: #4b4b4b;
+            }
+            .s-player-birthday {
+                padding-left: 3px;
+                border-left: #4b4b4b solid 2px;
+            }
+
+        /*将来像*/
+        .s-player-future-box {
+            margin-top: 5px;
+            display: flex;
+            height: 24px;
+        }
+            .s-player-future-box label {
+                font-size: 12px;
+                font-weight: bold;
+
+                margin: 2.5px 0px;
+                padding-right: 3px;
+                color: #4b4b4b;
+            }
+            .s-player-future {
+                padding-left: 3px;
+                border-left: #4b4b4b solid 2px;
+            }
     
-    /*身長体重*/
-    .s-player-heightandweight-box {
-        margin-left: 20px;
-        display: flex;
-        height: 24px;
-    }
-        .s-player-heightandweight-box label {
-            font-size: 12px;
-            font-weight: bold;
-
-            margin: 2.5px 0px;
-            padding-right: 3px;
-            color: #4b4b4b;
-        }
-        .s-player-heightandweight {
-            padding-left: 3px;
-            border-left: #4b4b4b solid 2px;
-        }
-
-    /*出身*/
-    .s-player-prefecture-box {
-        margin-left: 20px;
-        display: flex;
-        height: 24px;
-    }
-        .s-player-prefecture-box label {
-            font-size: 12px;
-            font-weight: bold;
-
-            margin: 2.5px 0px;
-            padding-right: 3px;
-            color: #4b4b4b;
-        }
-        .s-player-prefecture {
-            padding-left: 3px;
-            border-left: #4b4b4b solid 2px;
-        }
-
-    /*経歴*/
-    .s-player-career-box {
-        margin-left: 20px;
-        display: flex;
-        height: 24px;
-    }
-        .s-player-career-box label {
-            font-size: 12px;
-            font-weight: bold;
-
-            margin: 2.5px 0px;
-            padding-right: 3px;
-            color: #4b4b4b;
-        }
-        .s-player-career {
-            padding-left: 3px;
-            border-left: #4b4b4b solid 2px;
-        }
-
-    /*誕生日*/
-    .s-player-birthday-box {
-        margin-left: 20px;
-        display: flex;
-        height: 24px;
-    }
-        .s-player-birthday-box label {
-            font-size: 12px;
-            font-weight: bold;
-
-            margin: 2.5px 0px;
-            padding-right: 3px;
-            color: #4b4b4b;
-        }
-        .s-player-birthday {
-            padding-left: 3px;
-            border-left: #4b4b4b solid 2px;
-        }
-
-    /*将来像*/
-    .s-player-future-box {
-        margin-top: 5px;
-        display: flex;
-        height: 24px;
-    }
-        .s-player-future-box label {
-            font-size: 12px;
-            font-weight: bold;
-
-            margin: 2.5px 0px;
-            padding-right: 3px;
-            color: #4b4b4b;
-        }
-        .s-player-future {
-            padding-left: 3px;
-            border-left: #4b4b4b solid 2px;
-        }
-    
+    /*図*/
     .s-players-graphic {
         display: flex;
         margin-top: 10px;
@@ -270,6 +313,22 @@
             width: 280px;
             height: 111px;
         }
+            /*最高球速*/
+            .s-player-max {
+                position: absolute;
+                bottom: 10px;
+                border-radius : 2px;
+                background-color: #000000;
+                color: #FFFFFF;
+                padding: 2px 5px;
+                width: 60px;
+            }
+            .kmh {
+                position: absolute;
+                font-size: 10px;
+                top: 10px;
+                left: 37px;
+            }
             /*球種左方向タグ*/
             .s-vltag{
                 position: absolute;
@@ -421,11 +480,3 @@
         font-weight: bold;
         margin-top: 10px;
     }
-
-    /*日時*/      
-    .s-player-time {
-        display: flex;
-        margin-left: auto;
-        font-size: 16px;
-        color: #4B4B4B
-      }
