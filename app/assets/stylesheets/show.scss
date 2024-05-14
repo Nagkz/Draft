@@ -1,6 +1,27 @@
 .show-player {
     margin: 20px;
 }
+/*検索解除*/
+.show-search-cancel {
+    text-decoration: none; /* リンクの下線をなくす */
+    background-color: #686868;
+    display: inline-block;
+    text-align: center;
+    height: 20px;
+    width: 70px;
+    padding: 5px;
+    background-color: #686868; /* ボタンの背景色 */
+    color: #fff; /* ボタンのテキストカラー */
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .show-search-cancel:hover {
+    background-color: #4B4B4B; /* ホバー時のボタンの背景色 */
+  }
 .s-show-categoryandtime {
     display: flex;
 }
@@ -131,6 +152,10 @@
                         .like .selected .fa-heart {
                             color: #008803; /* 選択時のアイコンの色 */
                             font-size: 35px; /* ハートマークのサイズを変更する */
+                        }
+                        .like .fa-heart {
+                            color: #686868; /* 選択時のアイコンの色 */
+                            font-size: 24px; /* ハートマークのサイズを変更する */
                         }
 
 /*基本情報*/
@@ -467,7 +492,7 @@
     .s-player-tag {
         margin-top: 5px;
         font-size: 16px;
-        color: #4B4B4B;
+        color: #000000;
     }
 
 /*文章*/
@@ -480,3 +505,217 @@
         font-weight: bold;
         margin-top: 10px;
     }
+
+
+
+/*いいね*/
+.like-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+    .like-container label {
+        font-size: 20px;
+        font-weight: bold;
+        width: 100px;
+        margin: 30px auto;
+    }
+    .like-user {
+        font-size: 12px;
+        font-weight: lighter;
+        text-align: start;
+    }
+
+/*順位*/
+.rank-wrapper {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+    .rank-wrapper label {
+        font-size: 20px;
+        font-weight: bold;
+        width: 100px;
+        margin: 30px auto;
+    }
+    /*順位投稿*/
+    .rank-post {
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .rank-post select {
+        height: 25px; /* 高さ */
+        border-radius: 3px; /* 角丸 */
+        border: 2px solid #686868; /* 枠線 */
+    }
+
+        /*予想ボタン*/
+        .expectation-button {
+            display       : inline-block;
+            border-radius : 2px; /* 角丸にする */
+            height        : 25px; /* 高さ */
+            font-size     : 10pt; /* フォントサイズ */
+            text-align    : center;
+            cursor        : pointer; /* マウスポインターを変更してボタンのクリックを示す */
+            padding       : 2px 10px; /* 内側の余白 */
+            background    : #008803; /* 背景色 */
+            color         : #ffffff; /* 文字色 */
+            line-height   : 1em;
+            transition    : .3s; /* なめらか変化 */
+            border        : 2px solid #008803; /* 枠線 */
+            margin-left: auto;
+        }
+        .expectation-button:hover {
+            color         : #ffffff; /* 文字色 */
+            background    : #006402; /* 背景色 */
+            border        : 2px solid #006402; /* 枠線 */
+        }
+    /*順位予想一覧*/
+    .rank-user {
+        font-size: 12px;
+        font-weight: lighter;
+        text-align: start;
+    }
+
+/*コメント*/
+.comment-wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1000px;
+    margin: 25px auto;
+    justify-content: center;
+}
+    .comment-label {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        width: 100px;
+        margin: 30px auto;
+    }
+    /*コメント投稿ボックス*/
+    .comment-text {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 中央揃え */
+        justify-content: center; /* 縦方向の中央揃え */
+        margin: 0 auto; /* 箱自体を中央揃え */
+        padding-bottom: 10px;
+    }
+    .custom-text-area {
+        width: 600px;
+        height: 50px;
+        font-size: 14px;
+        padding-left: 5px;
+        box-sizing: border-box; /* パディングを含めてサイズを計算 */
+    }
+    /*コメント投稿ボタン*/
+    .comment-post-button {
+        font-size: 13px;
+        display: block; /* ブロック表示に変更 */
+        border-radius: 2px; /* 角丸にする */
+        text-align: center;
+        height: 22px;
+        cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+        padding: 2px 10px; /* 内側の余白 */
+        background: #008803; /* 背景色 */
+        color: #ffffff; /* 文字色 */
+        line-height: 1em;
+        transition: .3s; /* なめらか変化 */
+        border: 2px solid #008803; /* 枠線 */
+        margin: 0 auto; /* ボタン自体を中央に揃える */
+    }
+
+    .comment-post-button:hover {
+        color: #ffffff; /* 文字色 */
+        background: #006402; /* 背景色 */
+        border: 2px solid #006402; /* 枠線 */
+    }
+
+    /*コメントボックス*/
+    .comment-box {
+        border: 2px solid #686868;
+        border-radius: 5px;
+        margin-top: 10px;
+        padding: 10px;
+    }
+        .comment-main-box {
+            display: flex;
+        }
+        .comment-content {
+            flex: 1;
+            margin-right: 5px;
+        }
+            /*ユーザーネーム*/
+            .comment-username {
+                font-size: 20px;
+                font-weight: bold;
+                height: 30px;
+                margin-right: 10px;
+                white-space: nowrap;
+            }
+
+            /*いいねボタン*/
+            .comment-favorite {
+                margin-left: auto;
+            }
+            /*いいねボタン*/
+            .comment-favorite button {
+                margin-right: 10px;
+                border: none;
+                background-color: transparent;
+            }
+            /* 未選択時のスタイル */
+            .comment-favorite .unselected .fa-heart {
+                color: #686868; /* 未選択時のアイコンの色 */
+                font-size: 24px; /* ハートマークのサイズを変更する */
+            }
+            /* 選択時のスタイル */
+            .comment-favorite .selected .fa-heart {
+                color: #008803; /* 選択時のアイコンの色 */
+                font-size: 24px; /* ハートマークのサイズを変更する */
+            }
+        
+        .comment-sub-box {
+            display: flex;
+            height: 18px;
+            position: relative;
+        } 
+            /*削除ボタン*/
+            .comment-delete-button {
+                position: absolute;
+                top: 0px;
+                font-size: 10px;
+                display       : inline-block;
+                border-radius : 2px; /* 角丸にする */
+                text-align    : center;
+                height        : 18px;
+                cursor        : pointer; /* マウスポインターを変更してボタンのクリックを示す */
+                padding       : 2px 5px; /* 内側の余白 */
+                background    : #686868; /* 背景色 */
+                color         : #ffffff; /* 文字色 */
+                line-height   : 1em;
+                transition    : .3s; /* なめらか変化 */
+                border        : 2px solid #686868; /* 枠線 */
+            }
+            .comment-delete-button:hover {
+                color         : #ffffff; /* 文字色 */
+                background    : #4B4B4B; /* 背景色 */
+                border        : 2px solid #4B4B4B; /* 枠線 */
+            }
+
+            /*時間*/
+            .comment-time {
+                display: flex;
+                margin-left: auto;
+                font-size: 12px;
+                height: 18px;
+                color: #4B4B4B;
+            }

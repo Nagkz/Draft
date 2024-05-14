@@ -3,6 +3,9 @@
 <h3>選手詳細</h3>
 
 <div class="show-player">
+
+<%= link_to "検索解除", players_path, class: "show-search-cancel" %>
+
   <div class="s-show-categoryandtime">
     <div class="s-player-categoryandposition">
       <div class="s-player-category">
@@ -101,7 +104,7 @@
           <% end %>
         <% end %>
       <% else %>
-        <p>いいねの数 = <%= @player.likes.count %></p>
+        <i class="far fa-heart"></i><%= @player.likes.count %>
       <% end %>
     </div>
   </div>
@@ -373,82 +376,105 @@
     </div>
   </div>
   
-  <%= link_to "編集する", edit_player_path(@player.id) %>
+  <% if user_signed_in? %>
+    <% if current_user == @user || current_user.admin? %>
+      <%= link_to "編集する", edit_player_path(@player.id) %>
+    <% end %>
+  <% end %>
 </div>
 
-<h2>いいねしたユーザー</h2>
-<% @player.liked_users.each do |user| %>
-  <li><%= user.name %></li>
-<% end %>
+<div class="like-container">
+  <label>いいね一覧<label>
+  <div class="like-user">
+    <% @player.liked_users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </div>
+</div>
 
 <div class="rank-wrapper">
-  <p>順位予想一覧</p>
-  <% @ranks.each do |r| %>
-    <div>
-      <%= r.user.name unless r.user.blank? %>
-      <%= r.body %>
+  <label>順位予想</label>
+  <% if user_signed_in? %>
+    <div class="rank-post">
+      <%= form_with(model: [@player, @rank], local: true) do |r| %>
+        <%= r.select :body, 
+        [["1位", "1位"], 
+        ["2位", "2位"], 
+        ["3位", "3位"], 
+        ["4位", "4位"],
+        ["5位", "5位"], 
+        ["6位", "6位"], 
+        ["7位~", "7位~"],
+        ["育成", "育成"], 
+        ["漏れ", "漏れ"]], include_blank: "ー" %>
+        <input type="submit" value="予想" class="expectation-button">
+      <% end %>
     </div>
   <% end %>
 
-  <% if user_signed_in? %>
-    <%= form_with(model: [@player, @rank], local: true) do |r| %>
-      <%= r.label :順位  %>
-      <%= r.select :body, 
-      [["1位", "1位"], 
-      ["2位", "2位"], 
-      ["3位", "3位"], 
-      ["4位", "4位"],
-      ["5位", "5位"], 
-      ["6位", "6位"], 
-      ["7位~", "7位~"],
-      ["育成", "育成"], 
-      ["漏れ", "漏れ"]], include_blank: "選択して下さい" %>
-      <%= button_tag type: "submit" do %>
-        <i class="far fa-comments"></i> 予想する
-      <% end %>
+  <div class="rank-user">
+    <% @ranks.each do |r| %>
+      <li><%= r.user.name unless r.user.blank? %> <%= r.body %></li>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 <div class="comment-wrapper">
-  <p>コメント一覧</p>
-  <% @comments.each do |c| %>
-    <div>
-      <%= c.user.name unless c.user.blank? %>
-      <br>
-      <%= c.content %>
-      <%= c.created_at %>
-      <%= c.updated_at %>
-
-      <% if user_signed_in? && current_user.id == c.user_id %>
-        <%= button_to "削除する", player_comment_path(c.id), method: :delete %>
-      <% end %>
-    </div>
-
-    <% if user_signed_in? %>
-      <% if current_user.already_favorited?(c) %>
-        <%= button_to comment_favorite_path(c, comment_id: c.id), method: :delete do %>
-          <p>いいねを取り消す</p><%= c.favorites.count %>
-        <% end %>
-      <% else %>
-        <%= button_to comment_favorites_path(c, comment_id: c.id), method: :post do %>
-          <p>いいね</p><%= c.favorites.count %>
-        <% end %>
-      <% end %>
-    <% else %>
-          <p>いいねの数 = </p><%= c.favorites.count %>
-    <% end %>
-      <br>
-  <% end %>
+  <div class="comment-label">
+    コメント
+  </div>
 
   <% if user_signed_in? %>
-    <%= form_with(model: [@player, @comment], local: true) do |f| %>
-      <%= f.text_area :content %>
-      <%= button_tag type: "submit" do %>
-        <i class="far fa-comments"></i> コメントする
+    <div class="comment-text">
+      <%= form_with(model: [@player, @comment], local: true) do |f| %>
+        <%= f.text_area :content, placeholder: "コメントを入力", class: "custom-text-area" %>
+        <input type="submit" value="投稿" class="comment-post-button">
       <% end %>
-    <% end %>
+    </div>
+  <% end %>
+
+  <% @comments.each do |c| %>
+    <div class="comment-box">
+      <div class="comment-main-box">
+        <div class="comment-username">
+          <%= c.user.name unless c.user.blank? %>
+        </div>
+
+        <div class="comment-content">
+          <%= c.content %>
+        </div>
+
+        <div class="comment-favorite">
+          <% if user_signed_in? %>
+            <% if current_user.already_favorited?(c) %>
+              <%= button_to comment_favorite_path(c, comment_id: c.id), method: :delete, class: 'selected' do %>
+                <i class="fas fa-heart"></i><%= c.favorites.count %>
+              <% end %>
+            <% else %>
+              <%= button_to comment_favorites_path(c, comment_id: c.id), method: :post, class: 'unselected' do %>
+                <i class="far fa-heart"></i><%= c.favorites.count %>
+              <% end %>
+            <% end %>
+          <% else %>
+                <i class="far fa-heart"></i><%= c.favorites.count %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="comment-sub-box">
+        <div class="comment-administrate">
+          <% if user_signed_in? && current_user.id == c.user_id %>
+            <%= button_to "削除", player_comment_path(c.id), method: :delete, class: 'comment-delete-button' %>
+          <% end %>
+        </div>
+
+        <div class="comment-time">
+          <%= c.created_at.strftime('%-m月%-d日') %>投稿
+          <%= c.updated_at.strftime('%-m月%-d日') %>編集
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "選手一覧に戻る", players_path %>
+  <%= link_to "検索解除", players_path, class: "show-search-cancel" %>
+</div>

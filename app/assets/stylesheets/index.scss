@@ -39,10 +39,11 @@ li{
       height: 40px;
       font-size: 12pt;
       justify-content: center;
+      padding-left: 5px;
     }
     /*検索ボックスタグ&ボタン*/
     .search-box-tagandbutton {
-      width: 600px;
+      width: 609px;
       display: flex; /*横並び*/
       align-self: center;
       margin-top: 5px;
@@ -1195,13 +1196,14 @@ h3 {
     border-radius: 5px;
     margin-top: 10px;
     padding: 10px;
+    width: 1000px;
   }
     .player-main-box {
       display: flex;
     }
       .players-basic {
         display: flex;
-        width: 980px;
+        width: 1000px;
         height:116px;
       }
         /*左側*/
@@ -1275,11 +1277,12 @@ h3 {
               }
 
         .players-basic-right {
-          width: 717px;
+          width: 737px;
           margin-left: 10px;
         }
           .players-basic-right-a {
             display: flex;
+            height: 30px;
           }
             .players-basic-copy {
               font-size: 18px;
@@ -1308,6 +1311,10 @@ h3 {
                 color: #008803; /* 選択時のアイコンの色 */
                 font-size: 24px; /* ハートマークのサイズを変更する */
               }
+              .like .fa-heart {
+                color: #686868; /* 選択時のアイコンの色 */
+                font-size: 24px; /* ハートマークのサイズを変更する */
+              }
               /*詳細ボタン*/
               .player-detail-button a {
                 text-decoration: none; /* 下線を消す */
@@ -1322,7 +1329,7 @@ h3 {
                 display       : inline-block;
                 border-radius : 2px; /* 角丸にする */
                 text-align    : center;
-                height        : 22px;
+                height        : 20px;
                 width: 27px;
                 cursor        : pointer; /* マウスポインターを変更してボタンのクリックを示す */
                 padding       : 2px 10px; /* 内側の余白 */
@@ -1368,6 +1375,7 @@ h3 {
     
     .player-sub-box {
       display: flex;
+      margin-top: 1px;
     }
       .player-tab-box {
         font-size: 12px;
