@@ -707,23 +707,25 @@
                 <% end %>
               </div>
 
-              <div class="players-basic-stag">
-                <% t.sptags.each do |sptag| %>
-                  <span><%= sptag.sub_p_position %></span>
-                <% end %>
-              
-                <% t.sfctags.each do |sfctag| %>
-                  <span><%= sfctag.sub_fc_position %></span>
-                <% end %>
-              
-                <% t.sfitags.each do |sfitag| %>
-                  <span><%= sfitag.sub_fi_position %></span>
-                <% end %>
-              
-                <% t.sfotags.each do |sfotag| %>
-                  <span><%= sfotag.sub_fo_position %></span>
-                <% end %>
-              </div>
+              <% if t.sptags.any? || t.sfctags.any? || t.sfitags.any? || t.sfotags.any? %>
+                <div class="players-basic-stag">
+                  <% t.sptags.each do |sptag| %>
+                    <span><%= sptag.sub_p_position %></span>
+                  <% end %>
+                
+                  <% t.sfctags.each do |sfctag| %>
+                    <span><%= sfctag.sub_fc_position %></span>
+                  <% end %>
+                
+                  <% t.sfitags.each do |sfitag| %>
+                    <span><%= sfitag.sub_fi_position %></span>
+                  <% end %>
+                
+                  <% t.sfotags.each do |sfotag| %>
+                    <span><%= sfotag.sub_fo_position %></span>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
 
             <div class="players-basic-left-b">

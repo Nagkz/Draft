@@ -290,53 +290,53 @@
         </script>
       </div>
 
+    <% if params[:wptag_ids].present? %>
+      <div class="s-player-vtag">
+        <div class="s-player-max">
+          <span class="max-speed"><%= @player.max %></span>
+          <span class="kmh">km/h</span>
+        </div>
 
-    
-    <div class="s-player-vtag">
-      <div class="s-player-max">
-        <span class="max-speed"><%= @player.max %></span>
-        <span class="kmh">km/h</span>
-      </div>
+        <div class="s-vltag">
+          <% @player.vltags.each do |vltag| %>
+            <li><%= vltag.variety %></li>
+          <% end %>
+        </div>
 
-      <div class="s-vltag">
-        <% @player.vltags.each do |vltag| %>
-          <li><%= vltag.variety %></li>
-        <% end %>
-      </div>
+        <div class="s-vlltag">
+          <% @player.vlltags.each do |vlltag| %>
+            <li><%= vlltag.variety %></li>
+          <% end %>
+        </div>
 
-      <div class="s-vlltag">
-        <% @player.vlltags.each do |vlltag| %>
-          <li><%= vlltag.variety %></li>
-        <% end %>
-      </div>
+        <div class="s-vutag">
+          <% @player.vutags.each do |vutag| %>
+            <li><%= vutag.variety %></li>
+          <% end %>
+        </div>
 
-      <div class="s-vutag">
-        <% @player.vutags.each do |vutag| %>
-          <li><%= vutag.variety %></li>
-        <% end %>
-      </div>
+        <div class="s-vlrtag">
+          <% @player.vlrtags.each do |vlrtag| %>
+            <li><%= vlrtag.variety %></li>
+          <% end %>
+        </div>
 
-      <div class="s-vlrtag">
-        <% @player.vlrtags.each do |vlrtag| %>
-          <li><%= vlrtag.variety %></li>
-        <% end %>
-      </div>
+        <div class="s-vrtag">
+          <% @player.vrtags.each do |vrtag| %>
+            <li><%= vrtag.variety %></li>
+          <% end %>
+        </div>
 
-      <div class="s-vrtag">
-        <% @player.vrtags.each do |vrtag| %>
-          <li><%= vrtag.variety %></li>
-        <% end %>
+        <div class="s-vtag-figure">
+          <div class="s-vtag-ball"></div>
+          <% unless @player.vltags.empty? %><div class="s-vtag-left"></div><% end %>
+          <% unless @player.vlltags.empty? %><div class="s-vtag-lowerleft"></div><% end %>
+          <% unless @player.vutags.empty? %><div class="s-vtag-under"></div><% end %>
+          <% unless @player.vlrtags.empty? %><div class="s-vtag-lowerright"></div><% end %>
+          <% unless @player.vrtags.empty? %><div class="s-vtag-right"></div><% end %>
+        </div>
       </div>
-
-      <div class="s-vtag-figure">
-        <div class="s-vtag-ball"></div>
-        <% unless @player.vltags.empty? %><div class="s-vtag-left"></div><% end %>
-        <% unless @player.vlltags.empty? %><div class="s-vtag-lowerleft"></div><% end %>
-        <% unless @player.vutags.empty? %><div class="s-vtag-under"></div><% end %>
-        <% unless @player.vlrtags.empty? %><div class="s-vtag-lowerright"></div><% end %>
-        <% unless @player.vrtags.empty? %><div class="s-vtag-right"></div><% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
   
   <div class="s-player-tag">
