@@ -9,7 +9,7 @@
     text-align: center;
     height: 20px;
     width: 70px;
-    padding: 5px;
+    padding: 5px 10px;
     background-color: #686868; /* ボタンの背景色 */
     color: #fff; /* ボタンのテキストカラー */
     border: none;
@@ -555,7 +555,6 @@
         border-radius: 3px; /* 角丸 */
         border: 2px solid #686868; /* 枠線 */
     }
-
         /*予想ボタン*/
         .expectation-button {
             display       : inline-block;
@@ -577,11 +576,16 @@
             background    : #006402; /* 背景色 */
             border        : 2px solid #006402; /* 枠線 */
         }
+    
     /*順位予想一覧*/
     .rank-user {
         font-size: 12px;
         font-weight: lighter;
         text-align: start;
+        display: flex;
+    }
+    .rank-user li {
+        margin-right: 10px;
     }
 
 /*コメント*/

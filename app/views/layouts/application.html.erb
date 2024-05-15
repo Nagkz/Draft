@@ -17,6 +17,11 @@
       <h1>draft</h1>
       <div class="header-list">
         <ul>
+          <% if user_signed_in? %>
+            <% if current_user == @user || current_user.admin? %>
+            <li><%= link_to "新規投稿", new_player_path %></li>
+            <% end %>
+          <% end %>
             <li><%= link_to "ホーム", players_path %></li>
             <li><%= link_to "トップ", statics_top_path %></li>
           <% if user_signed_in? %>
@@ -57,6 +62,8 @@
     }
     </script>
 
-
+    <footer>
+      <p>Copyright © Draft Kanzen Koryaku All Rights Reserved.</p>
+    </footer>
   </body>
 </html>

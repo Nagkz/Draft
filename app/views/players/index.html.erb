@@ -565,8 +565,8 @@
           </div>
 
           <div class="search-detail-parameter-radio">
-            <label><input type="radio" class="radio-button" name="parametersearch_columns" value="just" checked> 一致</label>
-            <label><input type="radio" class="radio-button" name="parametersearch_columns" value="over"> 以上</label>
+            <label><input type="radio" class="radio-button" name="parametersearch_columns" value="just"> 一致</label>
+            <label><input type="radio" class="radio-button" name="parametersearch_columns" value="over" checked> 以上</label>
           </div>
         </div>
 
@@ -1186,10 +1186,6 @@
     </div>
   </div>
 </div>
-
-<% if user_signed_in? %>
-  <%= link_to "お問い合わせフォームへ", new_request_path %>
-<% end %>
 
   </body>
 </html>

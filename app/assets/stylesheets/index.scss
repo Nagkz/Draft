@@ -1412,6 +1412,7 @@ h3 {
   top: 650px;
   left: 0px;
   background-color: #000000;
+  border-radius: 2px;
 }
   .sakuin-container h2 {
     display: flex;
@@ -1421,12 +1422,6 @@ h3 {
     font-size: 16px;
     color: #FFFFFF
   }
-  .sakuin {
-    justify-content: space-between;
-    margin: 0px auto;
-    width: 90px;
-  }
-
   .sakuin {
     justify-content: space-between;
     margin: 0px auto;
