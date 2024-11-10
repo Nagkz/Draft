@@ -2,7 +2,21 @@ class PlayersController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
     
     def index
-      @players = Player.all
+      # sortオプションに応じてプレイヤーを並び替える
+      @sort_option = params[:sort] || 'newest'
+
+      @players = case @sort_option
+      when 'newest_created'
+        Player.order(created_at: :desc)
+      when 'oldest_created'
+        Player.order(created_at: :asc)
+      when 'newest_updated'
+        Player.order(updated_at: :desc)
+      when 'oldest_updated'
+        Player.order(updated_at: :asc)
+      else
+        Player.all
+      end
 
         #キーワード検索
         search_columns = params[:search_columns] || [] 
@@ -173,7 +187,7 @@ class PlayersController < ApplicationController
               end
             end
             player_ids = player_ids.reduce(:&) if player_ids.present? # 積集合を求める
-            @players = @players.where(id: player_ids) if player_ids.present?
+            @players = @players.where.not(id: player_ids) if player_ids.present?
           else
             player_ids = []
             params[:tag_ids].each do |key, value|

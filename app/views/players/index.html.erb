@@ -679,8 +679,19 @@
 </div>
 
 <div class="players-container">
-  <%= link_to "検索解除", players_path, class: "search-cancel" %>
-  
+  <div class="player-container-top">
+    <%= link_to "検索解除", players_path, class: "search-cancel" %>
+    <div class="sort-box">
+      <%= label_tag "sakusei", "作成日" %>
+      <%= link_to '新しい順', players_path(sort: 'newest_created'), class: ['sort-box-button', (params[:sort] == 'newest_created' ? 'active' : '')] %>
+      <%= link_to '古い順', players_path(sort: 'oldest_created'), class: ['sort-box-button', (params[:sort] == 'oldest_created' ? 'active' : '')] %>
+      <%= label_tag "koushin", "更新日" %>
+      <%= link_to '新しい順', players_path(sort: 'newest_updated'), class: ['sort-box-button', (params[:sort] == 'newest_updated' ? 'active' : '')] %>
+      <%= link_to '古い順', players_path(sort: 'oldest_updated'), class: ['sort-box-button', (params[:sort] == 'oldest_updated' ? 'active' : '')] %>
+    </div>
+
+  </div>
+
   <% @players.each do |t| %>
     <div class="player-box">
       <div class="player-main-box">

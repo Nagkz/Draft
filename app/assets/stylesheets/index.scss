@@ -1167,28 +1167,65 @@ h3 {
   margin: 30px auto;
   text-align: center;
 }
-  /*検索解除*/
-  .search-cancel {
-    text-decoration: none; /* リンクの下線をなくす */
-    background-color: #686868;
+  /*選手の上*/
+  .player-container-top {
+    display: flex;              /* フレックスボックスを使用 */
+    align-items: center;       /* 垂直方向の中央揃え */
+    gap: 10px;                 /* 要素間の間隔を設定 */
   }
-  .search-cancel {
-    display: inline-block;
-    text-align: center;
-    height: 20px;
-    width: 70px;
-    padding: 5px;
-    background-color: #686868; /* ボタンの背景色 */
-    color: #fff; /* ボタンのテキストカラー */
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  .search-cancel:hover {
-    background-color: #4B4B4B; /* ホバー時のボタンの背景色 */
-  }
+    /*検索解除*/
+    .search-cancel {
+      text-decoration: none; /* リンクの下線をなくす */
+      background-color: #686868;
+    }
+    .search-cancel {
+      display: inline-block;
+      text-align: center;
+      height: 20px;
+      width: 70px;
+      padding: 5px;
+      background-color: #686868; /* ボタンの背景色 */
+      color: #fff; /* ボタンのテキストカラー */
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .search-cancel:hover {
+      background-color: #4B4B4B; /* ホバー時のボタンの背景色 */
+    }
+    .sort-box {
+      display: flex;              /* フレックスボックスを使用 */
+      align-items: center;       /* 垂直方向の中央揃え */
+    }
+      .sort-box-button {
+        display: inline-block; /* リンクをボタンのように扱うためにインラインブロックにする */
+        height: 20px; /* 高さ */
+        width: 70px; /* 幅 */
+        border-radius: 2px; /* 角丸 */
+        background-color: #686868; /* 背景色 */
+        color: #ffffff; /* 文字色 */
+        font-size: 13px; /* フォントサイズ */
+        text-align: center; /* 中央揃え */
+        text-decoration: none; /* 下線を削除 */
+        padding: 1px 5px; /* 内側の余白 */
+        cursor: pointer; /* マウスポインターを変更してボタンのクリックを示す */
+        transition: .3s; /* なめらか変化 */
+        border: 2px solid #686868; /* 枠線 */
+        margin-right: 10px; /* 左マージン */
+      }
+      .sort-box-button:hover {
+        color: #ffffff; /* 文字色 */
+        background: #4B4B4B; /* 背景色 */
+        border: 2px solid #4B4B4B; /* 枠線 */
+      }
+      .active {
+        font-weight: bold; /* アクティブなリンクのフォントを太くする */
+        background-color: #008803; /* アクティブ時の背景色 */
+        border: 2px solid #008803; /* アクティブ時の枠線 */
+      }
+      
 
   /*選手ボックス*/
   .player-box {
